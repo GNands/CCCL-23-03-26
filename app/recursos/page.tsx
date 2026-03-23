@@ -44,6 +44,7 @@ export default function RecursosPage() {
           loop 
           muted 
           playsInline
+          suppressHydrationWarning
           className="absolute inset-0 w-full h-full object-cover opacity-40 mix-blend-luminosity"
         >
           <source src="https://storage.googleapis.com/gtv-videos-bucket/sample/TearsOfSteel.mp4" type="video/mp4" />

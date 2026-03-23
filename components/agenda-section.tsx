@@ -128,6 +128,7 @@ export default function AgendaSection() {
                   loop 
                   muted 
                   playsInline
+                  suppressHydrationWarning
                   className="object-cover w-full h-full opacity-80 group-hover:scale-105 transition-transform duration-700"
                 />
                 <div className="image-overlay absolute inset-0 bg-gradient-to-t from-white dark:from-slate-900 via-white/40 dark:via-slate-900/40 to-transparent opacity-90 transition-opacity duration-500 pointer-events-none" />

@@ -21,6 +21,7 @@ export default function SectionNavigator() {
   const pathname = usePathname();
   const [activeSection, setActiveSection] = useState('Inicio');
   const [isHovered, setIsHovered] = useState(false);
+  const [isForcedClosed, setIsForcedClosed] = useState(false);
 
   // Calculate active section for subpages directly
   const currentSubpage = sections.find(s => s.id !== 'hero' && pathname.includes(s.id));
@@ -55,24 +56,35 @@ export default function SectionNavigator() {
     return () => observer.disconnect();
   }, [pathname]);
 
+  const isOpen = isHovered && !isForcedClosed;
+
   return (
     <div 
       className="fixed top-32 left-6 z-[100] pointer-events-none"
-      onMouseEnter={() => setIsHovered(true)}
-      onMouseLeave={() => setIsHovered(false)}
+      onMouseEnter={() => {
+        setIsHovered(true);
+        setIsForcedClosed(false);
+      }}
+      onMouseLeave={() => {
+        setIsHovered(false);
+        setIsForcedClosed(false);
+      }}
     >
       <motion.div 
         className="pointer-events-auto bg-white/80 dark:bg-slate-900/80 backdrop-blur-md border border-amber-500/30 rounded-2xl shadow-xl overflow-hidden transition-opacity duration-500"
         initial={false}
         animate={{ 
-          width: isHovered ? 240 : 'auto',
-          height: isHovered ? 'auto' : 48,
-          opacity: isHovered ? 1 : 0.15
+          width: isOpen ? 240 : 'auto',
+          height: isOpen ? 'auto' : 48,
+          opacity: isOpen ? 1 : 0.15
         }}
         transition={{ type: 'spring', stiffness: 300, damping: 30 }}
       >
         {/* Current Section Display */}
-        <div className="flex items-center h-12 px-4 gap-3 cursor-pointer">
+        <div 
+          className="flex items-center h-12 px-4 gap-3 cursor-pointer"
+          onClick={() => setIsForcedClosed(true)}
+        >
           <div className="w-8 h-8 rounded-full bg-amber-500/10 flex items-center justify-center text-amber-600 dark:text-amber-400">
             {sections.find(s => s.name === displaySection)?.icon || <Home className="w-4 h-4" />}
           </div>
@@ -80,7 +92,7 @@ export default function SectionNavigator() {
             {displaySection}
           </span>
           <motion.div
-            animate={{ rotate: isHovered ? 90 : 0 }}
+            animate={{ rotate: isOpen ? 90 : 0 }}
             className="ml-auto text-slate-400"
           >
             <ChevronRight className="w-4 h-4" />
@@ -89,7 +101,7 @@ export default function SectionNavigator() {
 
         {/* Expanded Navigation List */}
         <AnimatePresence>
-          {isHovered && (
+          {isOpen && (
             <motion.div 
               initial={{ opacity: 0, y: -10 }}
               animate={{ opacity: 1, y: 0 }}
