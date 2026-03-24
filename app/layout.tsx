@@ -6,8 +6,8 @@ import { AppProvider } from '@/components/app-provider';
 import BackToTop from '@/components/back-to-top';
 
 export const metadata: Metadata = {
-  title: 'Enigma | Centro Cultural',
-  description: 'Un espacio de creación y educatividad.',
+  title: 'CCCL|Centro Cultural Chimango Lares',
+  description: 'Un espacio de creación y cultura.',
 };
 
 export default function RootLayout({children}: {children: React.ReactNode}) {
