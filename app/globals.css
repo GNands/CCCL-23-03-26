@@ -2,6 +2,25 @@
 
 @custom-variant dark (&:is(.dark, .dark *));
 
+@theme {
+  --font-serif: var(--font-serif);
+  --font-sans: var(--font-sans);
+}
+
+@layer utilities {
+  .font-serif {
+    font-family: var(--font-serif), serif;
+  }
+  
+  .glass {
+    @apply bg-white/40 dark:bg-slate-900/40 backdrop-blur-md border border-white/20 dark:border-slate-800/20;
+  }
+  
+  .glass-darker {
+    @apply bg-white/60 dark:bg-slate-900/60 backdrop-blur-lg border border-white/30 dark:border-slate-700/30;
+  }
+}
+
 @keyframes bounce-left {
   0%, 100% {
     transform: translateX(0);

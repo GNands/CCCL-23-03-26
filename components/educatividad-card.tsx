@@ -60,8 +60,9 @@ export default function EducatividadCard({ id, title, description, images }: Edu
 
       {/* Text Content */}
       <div className="flex flex-col flex-1">
-        <h3 className="text-xl lg:text-2xl font-bold text-amber-600 dark:text-amber-500 mb-3 transition-colors duration-500">{title}</h3>
-        <p className="text-sm lg:text-base text-slate-600 dark:text-slate-300 leading-relaxed transition-colors duration-500 mb-6">
+        <span className="text-[10px] uppercase tracking-[0.2em] text-amber-600/70 dark:text-amber-500/70 font-bold mb-1">Programa</span>
+        <h3 className="text-xl lg:text-2xl font-serif font-bold text-amber-600 dark:text-amber-500 mb-3 transition-colors duration-500">{title}</h3>
+        <p className="text-sm lg:text-base text-slate-600 dark:text-slate-300 leading-relaxed transition-colors duration-500 mb-6 font-light">
           {description}
         </p>
 

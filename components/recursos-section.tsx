@@ -37,10 +37,11 @@ export default function RecursosSection() {
       <div className="relative z-10 px-6 lg:px-10 max-w-[1400px] mx-auto w-full">
         <div className="flex flex-col md:flex-row items-center justify-between mb-16">
           <div className="max-w-2xl mb-8 md:mb-0">
-            <h2 className="text-4xl md:text-5xl font-bold tracking-tight text-slate-900 dark:text-white mb-4 transition-colors duration-500">
-              Conocimiento <span className="text-amber-600 dark:text-amber-500">es poder</span>
+            <span className="text-[10px] font-bold uppercase tracking-[0.4em] text-amber-600 dark:text-amber-500 mb-4 block">Archivo</span>
+            <h2 className="text-4xl md:text-5xl font-serif font-bold tracking-tight text-slate-900 dark:text-white mb-4 transition-colors duration-500">
+              Conocimiento <span className="italic font-light text-amber-600 dark:text-amber-500">es poder</span>
             </h2>
-            <p className="text-lg text-slate-600 dark:text-slate-300 leading-relaxed transition-colors duration-500">
+            <p className="text-lg text-slate-600 dark:text-slate-300 leading-relaxed transition-colors duration-500 font-light italic">
               Ponemos a tu alcance recursos que complementen tus iniciativas culturales.
             </p>
           </div>
@@ -76,8 +77,8 @@ export default function RecursosSection() {
               </div>
               
               <div className="p-6 flex flex-col flex-grow">
-                <h3 className="text-xl font-bold text-slate-900 dark:text-white mb-3 group-hover:text-amber-600 dark:group-hover:text-amber-400 transition-colors">{resource.title}</h3>
-                <p className="text-slate-600 dark:text-slate-400 text-sm leading-relaxed mb-6 flex-grow transition-colors duration-500">
+                <h3 className="text-xl font-serif font-bold text-slate-900 dark:text-white mb-3 group-hover:text-amber-600 dark:group-hover:text-amber-400 transition-colors">{resource.title}</h3>
+                <p className="text-slate-600 dark:text-slate-400 text-sm leading-relaxed mb-6 flex-grow transition-colors duration-500 font-light">
                   {resource.description}
                 </p>
               </div>

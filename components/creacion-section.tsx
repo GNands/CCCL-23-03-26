@@ -32,7 +32,6 @@ const creacionData = [
 ];
 
 export default function CreacionSection() {
-  const [openedItems, setOpenedItems] = useState<number[]>([]);
   const [hoveredIdx, setHoveredIdx] = useState<number | null>(null);
   const [selectedItem, setSelectedItem] = useState<typeof creacionData[0] | null>(null);
 
@@ -55,13 +54,6 @@ export default function CreacionSection() {
     };
   }, [selectedItem]);
 
-  const handleItemHover = (idx: number) => {
-    setHoveredIdx(idx);
-    if (!openedItems.includes(idx)) {
-      setOpenedItems(prev => [...prev, idx]);
-    }
-  };
-
   return (
     <section 
       id="creacion" 
@@ -73,13 +65,16 @@ export default function CreacionSection() {
       <div className="relative z-10 px-6 lg:px-10 max-w-[1400px] mx-auto w-full">
         <div className="flex items-center justify-between mb-12">
           <Link href="/creacion" className="group flex items-center gap-4">
-            <h2 className="text-3xl md:text-4xl font-bold tracking-tight text-slate-900 dark:text-white uppercase transition-colors duration-500 group-hover:text-amber-500 dark:group-hover:text-amber-500">
-              Creación
-            </h2>
+            <div className="flex flex-col">
+              <span className="text-[10px] uppercase tracking-[0.3em] text-amber-600 dark:text-amber-500 font-bold mb-1">Portafolio</span>
+              <h2 className="text-3xl md:text-4xl font-serif font-bold tracking-tight text-slate-900 dark:text-white uppercase transition-colors duration-500 group-hover:text-amber-500 dark:group-hover:text-amber-500">
+                Creación
+              </h2>
+            </div>
             <ArrowRight className="w-6 h-6 text-amber-500 opacity-0 group-hover:opacity-100 -translate-x-4 group-hover:translate-x-0 transition-all duration-300" />
           </Link>
-          <p className="text-amber-600/80 dark:text-amber-500/80 text-sm uppercase tracking-widest animate-pulse transition-colors duration-500">
-            {openedItems.length === creacionData.length ? 'Completado' : 'Descubrir'}
+          <p className="text-amber-600/80 dark:text-amber-500/80 text-[10px] uppercase tracking-widest transition-colors duration-500">
+            Descubrir
           </p>
         </div>
 
@@ -99,7 +94,6 @@ export default function CreacionSection() {
           {/* Items */}
           <div className="w-full h-full relative z-10">
             {creacionData.map((item, idx) => {
-              const isOpened = openedItems.includes(idx);
               const isHovered = hoveredIdx === idx;
               const isEven = idx % 2 !== 0; // 1 is even (index 1) -> flex-row-reverse
               
@@ -113,49 +107,53 @@ export default function CreacionSection() {
               const normalWidth = '35%';
               
               // Bring currently hovered item to the very top to fix overlap
-              const zIndex = isHovered ? 60 : (isOpened ? 50 + idx : 10 + idx);
+              const zIndex = isHovered ? 60 : 10 + idx;
 
               return (
                 <motion.div 
                   key={idx}
                   layout
-                  onMouseEnter={() => handleItemHover(idx)}
-                  className={`absolute h-[40%] flex ${isEven ? 'flex-row-reverse' : 'flex-row'} gap-6`}
+                  onMouseEnter={() => setHoveredIdx(idx)}
+                  onMouseLeave={() => setHoveredIdx(null)}
+                  className={`absolute h-[40%] flex ${isEven ? 'flex-row-reverse' : 'flex-row'} gap-6 cursor-pointer`}
                   style={{ 
                     top: normalTop,
                     zIndex
                   }}
                   animate={{
-                    left: isOpened ? expandedLeft : normalLeft,
-                    width: isOpened ? expandedWidth : normalWidth,
+                    left: isHovered ? expandedLeft : normalLeft,
+                    width: isHovered ? expandedWidth : normalWidth,
+                    scale: isHovered ? 1.05 : 1,
                   }}
                   transition={{ duration: 0.6, type: 'spring', bounce: 0.2 }}
                 >
                   {/* Image Box */}
                   <motion.div 
                     layout
-                    className={`relative overflow-hidden border border-amber-500/50 shadow-[0_0_20px_rgba(245,158,11,0.15)] rounded-2xl ${isOpened ? 'w-1/2' : 'w-full'} h-full group-hover:border-amber-400`}
+                    className={`relative overflow-hidden border border-amber-500/50 shadow-[0_0_20px_rgba(245,158,11,0.15)] rounded-2xl ${isHovered ? 'w-1/2' : 'w-full'} h-full transition-colors duration-500 ${isHovered ? 'border-amber-400' : ''}`}
                   >
                     <ExpandableImage src={item.image} alt={item.title} fill className="object-cover" referrerPolicy="no-referrer" />
-                    <div className={`image-overlay absolute inset-0 bg-black/40 transition-opacity duration-500 pointer-events-none ${isOpened ? 'opacity-0' : 'opacity-100'}`} />
+                    <div className={`image-overlay absolute inset-0 bg-black/40 transition-opacity duration-500 pointer-events-none ${isHovered ? 'opacity-0' : 'opacity-100'}`} />
                   </motion.div>
 
                   {/* Text Box */}
                   <AnimatePresence>
-                    {isOpened && (
+                    {isHovered && (
                       <motion.div 
-                        layout
                         initial={{ opacity: 0, scale: 0.95, x: isEven ? 20 : -20 }}
                         animate={{ opacity: 1, scale: 1, x: 0 }}
                         exit={{ opacity: 0, scale: 0.95, x: isEven ? 20 : -20 }}
                         transition={{ duration: 0.4, delay: 0.1 }}
-                        className="flex flex-col justify-center bg-white/95 dark:bg-slate-900/95 backdrop-blur-md border border-amber-500/30 p-8 rounded-2xl w-1/2 h-full shadow-[0_0_40px_rgba(245,158,11,0.15)] transition-colors duration-500"
+                        className="flex flex-col justify-center bg-white/95 dark:bg-slate-900/95 backdrop-blur-md border border-amber-500/30 p-8 rounded-2xl w-1/2 h-full shadow-[0_0_40px_rgba(245,158,11,0.15)] transition-colors duration-500 overflow-hidden min-w-[280px]"
                       >
-                        <h3 className="text-2xl md:text-3xl font-bold text-amber-600 dark:text-amber-500 mb-4 transition-colors duration-500">{item.title}</h3>
-                        <p className="text-lg text-slate-600 dark:text-slate-300 leading-relaxed transition-colors duration-500 mb-6">{item.description}</p>
+                        <h3 className="text-2xl md:text-3xl font-serif font-bold text-amber-600 dark:text-amber-500 mb-4 transition-colors duration-500 whitespace-nowrap">{item.title}</h3>
+                        <p className="text-lg text-slate-600 dark:text-slate-300 leading-relaxed transition-colors duration-500 mb-6 font-light italic line-clamp-3">{item.description}</p>
                         <button 
-                          onClick={() => setSelectedItem(item)}
-                          className="inline-flex items-center gap-2 text-amber-600 dark:text-amber-500 font-medium hover:text-amber-500 dark:hover:text-amber-400 transition-colors group self-start"
+                          onClick={(e) => {
+                            e.stopPropagation();
+                            setSelectedItem(item);
+                          }}
+                          className="inline-flex items-center gap-2 text-amber-600 dark:text-amber-500 font-bold text-sm hover:text-amber-500 dark:hover:text-amber-400 transition-colors group self-start whitespace-nowrap"
                         >
                           Ver detalles
                           <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
@@ -203,7 +201,7 @@ export default function CreacionSection() {
                 {/* Right: Content */}
                 <div className="w-full md:w-1/2 p-8 md:p-12 flex flex-col overflow-y-auto">
                   <div className="flex justify-between items-start mb-6">
-                    <h3 className="text-3xl md:text-4xl font-bold text-slate-900 dark:text-white transition-colors duration-500">{selectedItem.title}</h3>
+                    <h3 className="text-3xl md:text-4xl font-serif font-bold text-slate-900 dark:text-white transition-colors duration-500">{selectedItem.title}</h3>
                     <button
                       onClick={() => setSelectedItem(null)}
                       className="hidden md:flex p-2 bg-slate-100 dark:bg-slate-800 rounded-full text-slate-500 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white hover:bg-slate-200 dark:hover:bg-slate-700 transition-colors"
@@ -212,7 +210,7 @@ export default function CreacionSection() {
                     </button>
                   </div>
 
-                  <p className="text-slate-600 dark:text-slate-300 text-lg leading-relaxed mb-8 transition-colors duration-500">
+                  <p className="text-slate-600 dark:text-slate-300 text-lg leading-relaxed mb-8 transition-colors duration-500 font-light italic">
                     {selectedItem.fullDescription}
                   </p>
 

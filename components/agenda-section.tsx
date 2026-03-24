@@ -92,10 +92,11 @@ export default function AgendaSection() {
 
       <div className="relative z-10 px-6 lg:px-10 max-w-[1400px] mx-auto w-full">
         <div className="text-center mb-16 pt-12 md:pt-20">
-          <h2 className="text-4xl md:text-5xl font-bold tracking-tight text-slate-900 dark:text-white mb-4 transition-colors duration-500">
+          <span className="text-[10px] uppercase tracking-[0.3em] text-amber-600 dark:text-amber-500 font-bold mb-4 block">Programación</span>
+          <h2 className="text-4xl md:text-5xl font-serif font-bold tracking-tight text-slate-900 dark:text-white mb-4 transition-colors duration-500">
             {t('agenda.title')}
           </h2>
-          <p className="text-lg md:text-xl text-slate-600 dark:text-slate-300 max-w-2xl mx-auto transition-colors duration-500">
+          <p className="text-lg md:text-xl font-serif italic text-slate-600 dark:text-slate-300 max-w-2xl mx-auto transition-colors duration-500">
             Sumérgete en nuestra variada programación de actividades artísticas y formativas
           </p>
         </div>

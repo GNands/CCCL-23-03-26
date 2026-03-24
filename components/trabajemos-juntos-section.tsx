@@ -49,10 +49,11 @@ export default function TrabajemosJuntosSection() {
       <div className="relative z-10 px-6 lg:px-10 max-w-[1400px] mx-auto w-full">
         <div className="flex flex-col lg:flex-row gap-12 items-center mb-20">
           <div className="w-full lg:w-1/2">
-            <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight text-slate-900 dark:text-white mb-6 transition-colors duration-500">
-              Trabajemos <span className="text-amber-500">juntos</span>
+            <span className="text-[10px] font-bold uppercase tracking-[0.4em] text-amber-600 dark:text-amber-500 mb-4 block">Alianzas</span>
+            <h2 className="text-4xl md:text-5xl lg:text-7xl font-serif font-bold tracking-tight text-slate-900 dark:text-white mb-6 transition-colors duration-500">
+              Trabajemos <span className="italic font-light text-amber-500">juntos</span>
             </h2>
-            <p className="text-lg md:text-xl text-slate-600 dark:text-slate-300 leading-relaxed transition-colors duration-500">
+            <p className="text-lg md:text-xl text-slate-600 dark:text-slate-300 leading-relaxed transition-colors duration-500 font-light italic">
               ¿Tienes una festividad o un evento corporativo? Te ofrecemos una experiencia acorde a tu necesidad.
             </p>
           </div>
@@ -93,8 +94,8 @@ export default function TrabajemosJuntosSection() {
               <div className="w-20 h-20 rounded-full bg-stone-50 dark:bg-slate-950 border border-slate-200 dark:border-slate-800 flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-500 shadow-inner relative z-10">
                 {service.icon}
               </div>
-              <h3 className="text-xl md:text-2xl font-bold text-slate-900 dark:text-white mb-3 relative z-10 transition-colors duration-500">{service.title}</h3>
-              <p className="text-slate-500 dark:text-slate-400 text-sm md:text-base leading-relaxed relative z-10 transition-colors duration-500">
+              <h3 className="text-xl md:text-2xl font-serif font-bold text-slate-900 dark:text-white mb-3 relative z-10 transition-colors duration-500">{service.title}</h3>
+              <p className="text-slate-500 dark:text-slate-400 text-sm md:text-base leading-relaxed relative z-10 transition-colors duration-500 font-light">
                 {service.description}
               </p>
             </motion.div>

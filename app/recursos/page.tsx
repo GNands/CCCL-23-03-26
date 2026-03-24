@@ -53,10 +53,11 @@ export default function RecursosPage() {
         <div className="absolute inset-0 bg-gradient-to-t from-stone-50 dark:from-slate-950 via-stone-50/50 dark:via-slate-950/50 to-transparent pointer-events-none z-0 transition-colors duration-500" />
 
         <div className="relative z-10 px-6 lg:px-10 max-w-4xl mx-auto flex flex-col items-center w-full mt-20">
-          <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight text-slate-900 dark:text-white transition-colors duration-500 mb-4">
-            Nuestra <span className="text-purple-500">memoria viva</span>
+          <span className="text-[10px] font-bold uppercase tracking-[0.4em] text-purple-600 dark:text-purple-500 mb-4">Archivo</span>
+          <h1 className="text-4xl md:text-5xl lg:text-7xl font-serif font-bold tracking-tight text-slate-900 dark:text-white transition-colors duration-500 mb-4">
+            Nuestra <span className="italic font-light text-purple-500">memoria viva</span>
           </h1>
-          <h2 className="text-xl md:text-2xl font-medium text-slate-800 dark:text-slate-200 transition-colors duration-500">
+          <h2 className="text-xl md:text-2xl font-light text-slate-800 dark:text-slate-200 transition-colors duration-500 italic">
             <DynamicText 
               words={[
                 "explora nuestro archivo documental y audiovisual", 
@@ -75,9 +76,9 @@ export default function RecursosPage() {
       <section className="relative z-10 py-24 w-full">
         <div className="relative z-10 px-6 lg:px-10 max-w-5xl mx-auto w-full">
           <div className="text-center mb-16">
-            <h2 className="text-3xl md:text-4xl font-bold text-slate-900 dark:text-white mb-4">Archivo y memoria</h2>
-            <h3 className="text-xl text-purple-600 dark:text-purple-500 font-medium mb-8">Recursos disponibles</h3>
-            <p className="text-lg text-slate-600 dark:text-slate-300 leading-relaxed max-w-3xl mx-auto">
+            <span className="text-[10px] font-bold uppercase tracking-[0.4em] text-purple-600 dark:text-purple-500 mb-4 block">Recursos</span>
+            <h2 className="text-3xl md:text-4xl lg:text-5xl font-serif font-bold text-slate-900 dark:text-white mb-6">Archivo y memoria</h2>
+            <p className="text-lg text-slate-600 dark:text-slate-300 leading-relaxed max-w-3xl mx-auto font-light">
               El Centro Cultural Chimango Lares alberga un valioso archivo que documenta y preserva las expresiones culturales de los Andes peruanos. Ponemos a disposición del público esta colección de recursos fotográficos, audiovisuales y bibliográficos para fomentar la investigación, el aprendizaje y la valoración de nuestro patrimonio.
             </p>
           </div>
@@ -96,9 +97,9 @@ export default function RecursosPage() {
                   <div className="image-overlay absolute inset-0 bg-black/20 transition-opacity duration-500" />
                 </div>
                 <div className="w-full md:w-1/2 flex flex-col justify-center">
-                  <h3 className="text-3xl font-bold text-slate-900 dark:text-white mb-2">{recurso.title}</h3>
-                  <p className="text-sm font-medium text-purple-600 dark:text-purple-500 mb-6 uppercase tracking-wider">{recurso.subtitle}</p>
-                  <p className="text-lg text-slate-600 dark:text-slate-300 leading-relaxed mb-8">
+                  <h3 className="text-4xl font-serif font-bold text-slate-900 dark:text-white mb-4">{recurso.title}</h3>
+                  <p className="text-[10px] font-bold text-purple-600 dark:text-purple-500 mb-6 uppercase tracking-[0.2em] border-l-2 border-purple-500 pl-4 italic">{recurso.subtitle}</p>
+                  <p className="text-lg text-slate-600 dark:text-slate-300 leading-relaxed mb-8 font-light">
                     {recurso.sumilla}
                   </p>
                   <Link href={`/recursos/${recurso.id}`} className="inline-flex items-center gap-2 text-amber-600 dark:text-amber-500 font-medium hover:text-amber-500 dark:hover:text-amber-400 transition-colors group">

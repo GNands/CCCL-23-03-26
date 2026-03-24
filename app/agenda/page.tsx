@@ -89,6 +89,7 @@ export default function AgendaPage() {
   const [selectedDate, setSelectedDate] = useState(new Date(2026, 2, 23)); // Today-ish for the demo
   const [expandedDay, setExpandedDay] = useState<string | null>(format(new Date(2026, 2, 23), 'yyyy-MM-dd'));
   const [categoryFilter, setCategoryFilter] = useState<string>('todos');
+  const [moodFilter, setMoodFilter] = useState<string>('todos');
   const [searchQuery, setSearchQuery] = useState('');
   const [hoveredEvent, setHoveredEvent] = useState<any>(null);
   const [hoverPos, setHoverPos] = useState({ x: 0, y: 0 });
@@ -141,6 +142,15 @@ export default function AgendaPage() {
     if (categoryFilter !== 'todos') {
       events = events.filter(ev => ev.type === categoryFilter);
     }
+
+    if (moodFilter !== 'todos') {
+      events = events.filter(ev => {
+        if (moodFilter === 'familiar') return ev.description.toLowerCase().includes('niños') || ev.description.toLowerCase().includes('edades');
+        if (moodFilter === 'gratis') return ev.description.toLowerCase().includes('gratuito') || ev.description.toLowerCase().includes('libre');
+        if (moodFilter === 'intensivo') return ev.description.toLowerCase().includes('intensivo') || ev.description.toLowerCase().includes('técnicas');
+        return true;
+      });
+    }
     
     if (searchQuery) {
       events = events.filter(ev => 
@@ -161,6 +171,13 @@ export default function AgendaPage() {
     { id: 'espectaculo', name: 'Espectáculos' },
     { id: 'taller', name: 'Talleres' },
     { id: 'exposicion', name: 'Exposiciones' },
+  ];
+
+  const moods = [
+    { id: 'todos', name: 'Cualquier Mood' },
+    { id: 'familiar', name: 'Familiar' },
+    { id: 'gratis', name: 'Gratuito' },
+    { id: 'intensivo', name: 'Intensivo' },
   ];
 
   const handleEventHover = (e: React.MouseEvent, event: any) => {
@@ -236,12 +253,13 @@ export default function AgendaPage() {
         </video>
         
         <div className="absolute inset-0 bg-gradient-to-t from-stone-50 dark:from-slate-950 via-stone-50/50 dark:via-slate-950/50 to-transparent pointer-events-none z-0 transition-colors duration-500" />
-
+        
         <div className="relative z-10 px-6 lg:px-10 max-w-4xl mx-auto flex flex-col items-center w-full mt-20">
-          <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight text-slate-900 dark:text-white transition-colors duration-500 mb-4">
-            Vive la <DynamicText words={["Cultura", "Música", "Danza", "Historia", "Experiencia"]} highlightClass="text-amber-500" /> en primera fila
+          <span className="text-[10px] font-bold uppercase tracking-[0.4em] text-amber-600 dark:text-amber-500 mb-4">Explora</span>
+          <h1 className="text-4xl md:text-5xl lg:text-7xl font-serif font-bold tracking-tight text-slate-900 dark:text-white transition-colors duration-500 mb-4">
+            Vive la <DynamicText words={["Cultura", "Música", "Danza", "Historia", "Experiencia"]} highlightClass="text-amber-600 dark:text-amber-500" /> en primera fila
           </h1>
-          <h2 className="text-xl md:text-2xl font-medium text-slate-800 dark:text-slate-200 transition-colors duration-500">
+          <h2 className="text-xl md:text-2xl font-light text-slate-800 dark:text-slate-200 transition-colors duration-500 italic">
             Descubre nuestros próximos eventos y espectáculos
           </h2>
         </div>
@@ -251,51 +269,76 @@ export default function AgendaPage() {
         
         {/* Header */}
         <div className="text-center mb-16">
-          <h2 className="text-3xl md:text-4xl font-bold text-slate-900 dark:text-white mb-4 transition-colors duration-500">
+          <h2 className="text-3xl md:text-4xl lg:text-5xl font-serif font-bold text-slate-900 dark:text-white mb-4 transition-colors duration-500">
             Nuestra programación
           </h2>
-          <h3 className="text-xl text-amber-600 dark:text-amber-500 font-medium mb-8">Eventos destacados</h3>
-          <p className="text-lg text-slate-600 dark:text-slate-400 max-w-3xl mx-auto transition-colors duration-500">
+          <h3 className="text-xs text-amber-600 dark:text-amber-500 font-bold mb-8 uppercase tracking-[0.2em]">Eventos destacados</h3>
+          <p className="text-lg text-slate-600 dark:text-slate-400 max-w-3xl mx-auto transition-colors duration-500 font-light">
             Mantente al día con todas las actividades, presentaciones, talleres y exposiciones que el Centro Cultural Chimango Lares tiene para ofrecer.
           </p>
         </div>
 
         {/* Filtros y Controles Superiores */}
-        <div className="flex flex-col lg:flex-row items-center justify-between gap-6 mb-12 bg-white/40 dark:bg-slate-900/40 backdrop-blur-md p-6 rounded-3xl border border-amber-500/10 shadow-lg">
-          <div className="flex flex-wrap items-center gap-2">
-            {categories.map((cat) => (
+        <div className="flex flex-col gap-6 mb-12 glass p-8 rounded-[2rem] shadow-xl">
+          <div className="flex flex-col lg:flex-row items-center justify-between gap-6">
+            <div className="flex flex-wrap items-center gap-2">
+              {categories.map((cat) => (
+                <button
+                  key={cat.id}
+                  onClick={() => setCategoryFilter(cat.id)}
+                  className={`px-6 py-2 rounded-full text-[10px] font-bold uppercase tracking-wider transition-all ${
+                    categoryFilter === cat.id 
+                      ? 'bg-amber-500 text-white shadow-lg shadow-amber-500/30' 
+                      : 'bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-400 hover:bg-amber-100 dark:hover:bg-amber-900/30'
+                  }`}
+                >
+                  {cat.name}
+                </button>
+              ))}
+            </div>
+            
+            <div className="flex items-center gap-4 w-full lg:w-auto">
+              <div className="relative flex-grow lg:w-64">
+                <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-slate-400" />
+                <input 
+                  type="text"
+                  placeholder="Buscar eventos..."
+                  value={searchQuery}
+                  onChange={(e) => setSearchQuery(e.target.value)}
+                  className="w-full pl-10 pr-4 py-2 bg-white dark:bg-slate-900 border border-amber-500/20 rounded-full text-sm focus:outline-none focus:ring-2 focus:ring-amber-500/50 transition-all"
+                />
+                {searchQuery && (
+                  <div className="absolute -bottom-6 left-4 text-[10px] text-amber-600 font-bold animate-pulse">
+                    Filtrando resultados...
+                  </div>
+                )}
+              </div>
+              <button 
+                onClick={goToToday}
+                className="px-6 py-2 bg-white dark:bg-slate-900 border border-amber-500/20 text-amber-600 font-bold rounded-full hover:bg-amber-500 hover:text-white transition-all shadow-md flex items-center gap-2 whitespace-nowrap text-xs uppercase tracking-widest"
+              >
+                <CalendarIcon className="w-4 h-4" />
+                Hoy
+              </button>
+            </div>
+          </div>
+
+          {/* Mood Filters */}
+          <div className="flex flex-wrap items-center gap-4 pt-4 border-t border-amber-500/10">
+            <span className="text-[10px] font-bold uppercase tracking-widest text-slate-400">Mood:</span>
+            {moods.map((mood) => (
               <button
-                key={cat.id}
-                onClick={() => setCategoryFilter(cat.id)}
-                className={`px-6 py-2 rounded-full text-sm font-bold transition-all ${
-                  categoryFilter === cat.id 
-                    ? 'bg-amber-500 text-white shadow-lg shadow-amber-500/30' 
-                    : 'bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-400 hover:bg-amber-100 dark:hover:bg-amber-900/30'
+                key={mood.id}
+                onClick={() => setMoodFilter(mood.id)}
+                className={`text-[10px] font-bold uppercase tracking-widest transition-all ${
+                  moodFilter === mood.id 
+                    ? 'text-amber-500 underline underline-offset-4' 
+                    : 'text-slate-500 hover:text-amber-500/70'
                 }`}
               >
-                {cat.name}
+                {mood.name}
               </button>
             ))}
-          </div>
-          
-          <div className="flex items-center gap-4 w-full lg:w-auto">
-            <div className="relative flex-grow lg:w-64">
-              <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-slate-400" />
-              <input 
-                type="text"
-                placeholder="Buscar eventos..."
-                value={searchQuery}
-                onChange={(e) => setSearchQuery(e.target.value)}
-                className="w-full pl-10 pr-4 py-2 bg-white dark:bg-slate-900 border border-amber-500/20 rounded-full text-sm focus:outline-none focus:ring-2 focus:ring-amber-500/50 transition-all"
-              />
-            </div>
-            <button 
-              onClick={goToToday}
-              className="px-6 py-2 bg-white dark:bg-slate-900 border border-amber-500/20 text-amber-600 font-bold rounded-full hover:bg-amber-500 hover:text-white transition-all shadow-md flex items-center gap-2 whitespace-nowrap"
-            >
-              <CalendarIcon className="w-4 h-4" />
-              Hoy
-            </button>
           </div>
         </div>
 
@@ -311,24 +354,24 @@ export default function AgendaPage() {
             >
               {/* Sidebar: Mini Calendario Mensual */}
               <div className="lg:col-span-4 space-y-8">
-                <div className="bg-white/40 dark:bg-slate-900/40 backdrop-blur-md rounded-2xl border border-amber-500/20 p-6 shadow-xl sticky top-24">
-                  <div className="flex items-center justify-between mb-6">
-                    <h4 className="text-lg font-bold text-slate-900 dark:text-white capitalize">
+                <div className="glass rounded-3xl p-8 shadow-2xl sticky top-24">
+                  <div className="flex items-center justify-between mb-8">
+                    <h4 className="text-xl font-serif font-bold text-slate-900 dark:text-white capitalize">
                       {format(currentMonth, 'MMMM yyyy', { locale: es })}
                     </h4>
                     <div className="flex gap-2">
-                      <button onClick={prevMonth} className="p-1.5 rounded-full hover:bg-amber-100 dark:hover:bg-amber-900/30 text-amber-600 transition-colors">
+                      <button onClick={prevMonth} className="p-2 rounded-full hover:bg-amber-100 dark:hover:bg-amber-900/30 text-amber-600 transition-colors">
                         <ChevronLeft className="w-5 h-5" />
                       </button>
-                      <button onClick={nextMonth} className="p-1.5 rounded-full hover:bg-amber-100 dark:hover:bg-amber-900/30 text-amber-600 transition-colors">
+                      <button onClick={nextMonth} className="p-2 rounded-full hover:bg-amber-100 dark:hover:bg-amber-900/30 text-amber-600 transition-colors">
                         <ChevronRight className="w-5 h-5" />
                       </button>
                     </div>
                   </div>
 
-                  <div className="grid grid-cols-7 gap-1 mb-2">
+                  <div className="grid grid-cols-7 gap-1 mb-4">
                     {['L', 'M', 'M', 'J', 'V', 'S', 'D'].map((day, i) => (
-                      <div key={i} className="text-center text-[10px] font-bold text-amber-600/60 uppercase tracking-widest">
+                      <div key={i} className="text-center text-[9px] font-bold text-amber-600/60 uppercase tracking-[0.2em]">
                         {day}
                       </div>
                     ))}
@@ -336,9 +379,15 @@ export default function AgendaPage() {
 
                   <div className="grid grid-cols-7 gap-1">
                     {monthDays.map((day, i) => {
-                      const hasEvents = getEventsForDay(day).length > 0;
+                      const events = getEventsForDay(day);
+                      const hasEvents = events.length > 0;
                       const isSelected = isSameDay(day, selectedDate);
                       const isCurrentMonth = isSameMonth(day, currentMonth);
+                      
+                      // Highlight if search matches events on this day
+                      const isSearchMatch = searchQuery && events.some(ev => 
+                        ev.title.toLowerCase().includes(searchQuery.toLowerCase())
+                      );
 
                       return (
                         <button
@@ -348,15 +397,16 @@ export default function AgendaPage() {
                             setExpandedDay(format(day, 'yyyy-MM-dd'));
                           }}
                           className={`
-                            relative aspect-square flex items-center justify-center text-xs rounded-lg transition-all
-                            ${!isCurrentMonth ? 'text-slate-300 dark:text-slate-700' : 'text-slate-700 dark:text-slate-300'}
-                            ${isSelected ? 'bg-amber-500 text-white shadow-lg shadow-amber-500/30 scale-110 z-10' : 'hover:bg-amber-100 dark:hover:bg-amber-900/20'}
-                            ${isToday(day) && !isSelected ? 'border border-amber-500 text-amber-600 font-bold' : ''}
+                            relative aspect-square flex items-center justify-center text-xs rounded-xl transition-all duration-500
+                            ${!isCurrentMonth ? 'text-slate-300 dark:text-slate-700 opacity-40' : 'text-slate-700 dark:text-slate-300'}
+                            ${isSelected ? 'bg-amber-500 text-white shadow-lg shadow-amber-500/40 scale-110 z-10 font-bold' : 'hover:bg-amber-100 dark:hover:bg-amber-900/20'}
+                            ${isToday(day) && !isSelected ? 'border-2 border-amber-500/50 text-amber-600 font-bold' : ''}
+                            ${isSearchMatch ? 'ring-2 ring-amber-500 ring-offset-2 dark:ring-offset-slate-900 animate-pulse' : ''}
                           `}
                         >
                           {format(day, 'd')}
                           {hasEvents && !isSelected && (
-                            <span className="absolute bottom-1 left-1/2 -translate-x-1/2 w-1 h-1 bg-amber-500 rounded-full" />
+                            <span className="absolute bottom-1.5 left-1/2 -translate-x-1/2 w-1 h-1 bg-amber-500 rounded-full" />
                           )}
                         </button>
                       );
@@ -387,10 +437,10 @@ export default function AgendaPage() {
               <div className="lg:col-span-8">
                 <div className="flex items-center justify-between mb-8">
                   <div>
-                    <h3 className="text-2xl font-bold text-slate-900 dark:text-white">
+                    <h3 className="text-3xl font-serif font-bold text-slate-900 dark:text-white">
                       Semana del {format(weekDays[0], 'd')} al {format(weekDays[6], 'd')} de {format(weekDays[0], 'MMMM', { locale: es })}
                     </h3>
-                    <p className="text-slate-500 dark:text-slate-400">Explora los eventos de esta semana</p>
+                    <p className="text-xs font-bold uppercase tracking-[0.2em] text-amber-600/60 mt-2">Explora los eventos de esta semana</p>
                   </div>
                   <div className="flex gap-3">
                     <button 
@@ -546,7 +596,7 @@ export default function AgendaPage() {
                 <button onClick={prevMonth} className="text-amber-500 hover:scale-110 transition-transform">
                   <ChevronLeft className="w-10 h-10 stroke-[3px]" />
                 </button>
-                <h3 className="text-5xl md:text-7xl font-light text-slate-900 dark:text-white tracking-tight">
+                <h3 className="text-5xl md:text-7xl font-serif font-light text-slate-900 dark:text-white tracking-tight capitalize">
                   {format(currentMonth, 'MMMM yyyy', { locale: es })}
                 </h3>
                 <button onClick={nextMonth} className="text-amber-500 hover:scale-110 transition-transform">
@@ -562,7 +612,7 @@ export default function AgendaPage() {
                 ))}
               </div>
 
-              <div className="flex flex-col gap-2">
+              <div className="flex flex-col gap-4">
                 {weeks.map((week, weekIdx) => {
                   const isExpanded = activeWeekIndex === weekIdx;
                   
@@ -573,8 +623,8 @@ export default function AgendaPage() {
                       className={`
                         relative overflow-hidden border transition-all duration-700 cursor-pointer
                         ${isExpanded 
-                          ? 'bg-white dark:bg-slate-900 shadow-2xl border-amber-500/30 rounded-3xl' 
-                          : 'bg-stone-100/50 dark:bg-slate-900/30 border-stone-200 dark:border-slate-800 hover:bg-stone-200/50 dark:hover:bg-slate-800/50 rounded-xl h-14'
+                          ? 'glass-darker shadow-2xl border-amber-500/40 rounded-[2.5rem] z-20' 
+                          : 'glass border-stone-200 dark:border-slate-800 hover:bg-stone-200/50 dark:hover:bg-slate-800/50 rounded-2xl h-16 opacity-40 hover:opacity-100 grayscale-[0.5] hover:grayscale-0'
                         }
                       `}
                       onClick={() => setSelectedDate(week[0])}

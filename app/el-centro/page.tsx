@@ -21,17 +21,18 @@ export default function ElCentroPage() {
         
         <div className="relative z-10 px-6 lg:px-10 max-w-7xl mx-auto flex flex-col items-center w-full">
           <div className="max-w-4xl mb-16 space-y-6 flex flex-col items-center">
-            <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold tracking-tight text-slate-900 dark:text-white transition-colors duration-500">
+            <span className="text-[10px] uppercase tracking-[0.3em] text-amber-600 dark:text-amber-500 font-bold mb-2 block">Identidad & Cultura</span>
+            <h1 className="text-5xl md:text-6xl lg:text-7xl font-serif font-bold tracking-tight text-slate-900 dark:text-white transition-colors duration-500">
               <DynamicText 
                 staticText="Somos" 
                 words={["chankas", "Peruanos", "Creadores Orgullosos"]} 
                 highlightClass="text-amber-500"
               />
             </h1>
-            <h2 className="text-2xl md:text-3xl font-medium text-slate-800 dark:text-slate-200 transition-colors duration-500">
+            <h2 className="text-2xl md:text-3xl font-serif italic font-medium text-slate-800 dark:text-slate-200 transition-colors duration-500">
               Preservamos nuestra identidad para las futuras generaciones.
             </h2>
-            <p className="text-lg md:text-xl text-slate-600 dark:text-slate-300 leading-relaxed transition-colors duration-500">
+            <p className="text-lg md:text-xl text-slate-600 dark:text-slate-300 leading-relaxed transition-colors duration-500 max-w-2xl">
               Motivamos la exploración cultural como recurso para la creación artística.
             </p>
           </div>
@@ -48,17 +49,18 @@ export default function ElCentroPage() {
         <div className="relative z-10 px-6 lg:px-10 max-w-7xl mx-auto w-full">
           <div className="flex flex-col lg:flex-row gap-16 items-start">
             <div className="w-full lg:w-1/2">
-              <h2 className="text-4xl font-bold text-slate-900 dark:text-white mb-4">El legado</h2>
-              <h3 className="text-2xl text-amber-600 dark:text-amber-500 font-medium mb-10">Nuestro fundador.</h3>
+              <span className="text-[10px] uppercase tracking-[0.3em] text-amber-600 dark:text-amber-500 font-bold mb-4 block">Nuestra Historia</span>
+              <h2 className="text-4xl md:text-5xl font-serif font-bold text-slate-900 dark:text-white mb-4">El legado</h2>
+              <h3 className="text-2xl text-amber-600 dark:text-amber-500 font-serif italic font-medium mb-10">Nuestro fundador.</h3>
               <div className="relative w-full aspect-[4/5] rounded-3xl overflow-hidden shadow-2xl border-4 border-amber-500/30">
                 <Image src="https://picsum.photos/seed/chimango/1000/1200" alt="Chimango Lares" fill className="object-cover" />
               </div>
             </div>
             <div className="w-full lg:w-1/2">
               <div className="bg-white dark:bg-black border-2 border-amber-500/80 rounded-3xl p-8 md:p-12 shadow-[0_0_40px_rgba(245,158,11,0.15)]">
-                <div className="space-y-6 text-slate-700 dark:text-slate-300 leading-relaxed text-justify text-lg">
+                <div className="space-y-6 text-slate-700 dark:text-slate-300 leading-relaxed text-justify text-lg font-light">
                   <p>
-                    Juan Andrés Lares León (Ayacucho, 1957), más conocido en el mundo del folclore como &quot;Chimango Lares&quot;, es violinista, compositor y difusor cultural ayacuchano y uno de los principales expositores del folclor, figura destacada de la música andina peruana, considerado por especialistas, cultores y su público como &quot;el Primer Violín Andino del Perú&quot;. Su labor denodada en la difusión, conservación y puesta en valor del patrimonio inmaterial del país no solo se extiende sobre el ámbito de lo musical, ocupando gran parte de su vida al rescate y renovación de la ancestral Danza de las Tijeras. También acompaña con sus arrobadoras melodías, a maravillosas danzas costumbristas como las Huaylías, Fiesta del Agua, Negritos de cintas multicolores, entre otras.
+                    <span className="font-serif text-2xl text-amber-600 dark:text-amber-500 font-bold mr-1">Juan Andrés Lares León</span> (Ayacucho, 1957), más conocido en el mundo del folclore como &quot;Chimango Lares&quot;, es violinista, compositor y difusor cultural ayacuchano y uno de los principales expositores del folclor, figura destacada de la música andina peruana, considerado por especialistas, cultores y su público como &quot;el Primer Violín Andino del Perú&quot;. Su labor denodada en la difusión, conservación y puesta en valor del patrimonio inmaterial del país no solo se extiende sobre el ámbito de lo musical, ocupando gran parte de su vida al rescate y renovación de la ancestral Danza de las Tijeras. También acompaña con sus arrobadoras melodías, a maravillosas danzas costumbristas como las Huaylías, Fiesta del Agua, Negritos de cintas multicolores, entre otras.
                   </p>
                   <p>
                     Como músico representativo de los Andes peruanos ha viajado con su violín por los más importantes escenarios del país, transponiendo fronteras, llevando su arte y herencia a diversos países de América Latina, América del Norte, Asia y Europa, en giras exitosas y presentándose en más de 100 festivales alrededor del mundo.

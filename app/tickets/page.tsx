@@ -28,16 +28,16 @@ export default function TicketsPage() {
           {step === 1 && (
             <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} className="space-y-8">
               <div className="text-center">
-                <h1 className="text-3xl md:text-4xl font-bold mb-4">Comprar Entradas</h1>
-                <p className="text-slate-600 dark:text-slate-400">Selecciona la cantidad de entradas que deseas adquirir.</p>
+                <h1 className="text-3xl md:text-4xl font-serif font-bold mb-4">Comprar Entradas</h1>
+                <p className="text-slate-600 dark:text-slate-400 font-light italic">Selecciona la cantidad de entradas que deseas adquirir.</p>
               </div>
 
               <div className="bg-slate-50 dark:bg-slate-800/50 rounded-2xl p-6 border border-slate-200 dark:border-slate-700">
-                <h3 className="text-xl font-bold mb-4 text-amber-600 dark:text-amber-500">Una vida y un violín</h3>
+                <h3 className="text-xl font-serif font-bold mb-4 text-amber-600 dark:text-amber-500">Una vida y un violín</h3>
                 <div className="space-y-3 text-sm text-slate-600 dark:text-slate-300 mb-6">
-                  <div className="flex items-center gap-2"><Calendar className="w-4 h-4" /> 16 de Mayo, 2025</div>
-                  <div className="flex items-center gap-2"><Clock className="w-4 h-4" /> 19:30 hrs</div>
-                  <div className="flex items-center gap-2"><MapPin className="w-4 h-4" /> Teatro Principal</div>
+                  <div className="flex items-center gap-2 font-light"><Calendar className="w-4 h-4" /> 16 de Mayo, 2025</div>
+                  <div className="flex items-center gap-2 font-light"><Clock className="w-4 h-4" /> 19:30 hrs</div>
+                  <div className="flex items-center gap-2 font-light"><MapPin className="w-4 h-4" /> Teatro Principal</div>
                 </div>
 
                 <div className="flex items-center justify-between py-4 border-t border-slate-200 dark:border-slate-700">
@@ -78,8 +78,8 @@ export default function TicketsPage() {
           {step === 2 && (
             <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} className="space-y-8">
               <div className="text-center">
-                <h1 className="text-3xl md:text-4xl font-bold mb-4">Datos de Compra</h1>
-                <p className="text-slate-600 dark:text-slate-400">Ingresa tus datos para enviar tus entradas.</p>
+                <h1 className="text-3xl md:text-4xl font-serif font-bold mb-4">Datos de Compra</h1>
+                <p className="text-slate-600 dark:text-slate-400 font-light italic">Ingresa tus datos para enviar tus entradas.</p>
               </div>
 
               <div className="space-y-4">
@@ -126,8 +126,8 @@ export default function TicketsPage() {
               <div className="w-24 h-24 bg-green-100 dark:bg-green-900/30 rounded-full flex items-center justify-center mx-auto mb-6">
                 <CheckCircle2 className="w-12 h-12 text-green-600 dark:text-green-400" />
               </div>
-              <h1 className="text-3xl md:text-4xl font-bold">¡Compra Exitosa!</h1>
-              <p className="text-slate-600 dark:text-slate-400 text-lg max-w-md mx-auto">
+              <h1 className="text-3xl md:text-4xl font-serif font-bold">¡Compra Exitosa!</h1>
+              <p className="text-slate-600 dark:text-slate-400 text-lg max-w-md mx-auto font-light italic">
                 Tus {ticketCount} entrada(s) han sido enviadas a tu correo electrónico. ¡Te esperamos!
               </p>
               

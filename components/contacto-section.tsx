@@ -14,11 +14,12 @@ export default function ContactSection() {
           
           {/* Left Column - Info */}
           <div className="w-full md:w-1/2 flex flex-col justify-center">
-            <div className="text-center mb-16">
-              <h2 className="text-4xl md:text-5xl font-bold tracking-tight text-slate-900 dark:text-white mb-6 transition-colors duration-500">
-                Contáctate con <span className="text-amber-500">nosotros.</span>
+            <div className="text-center md:text-left mb-16">
+              <span className="text-[10px] uppercase tracking-[0.3em] text-amber-600 dark:text-amber-500 font-bold mb-4 block">Conexión</span>
+              <h2 className="text-4xl md:text-5xl font-serif font-bold tracking-tight text-slate-900 dark:text-white mb-6 transition-colors duration-500">
+                Contáctate con <span className="text-amber-500 italic">nosotros.</span>
               </h2>
-              <p className="text-lg text-slate-600 dark:text-slate-300 mb-12 max-w-md mx-auto leading-relaxed transition-colors duration-500">
+              <p className="text-lg text-slate-600 dark:text-slate-300 mb-12 max-w-md md:mx-0 mx-auto leading-relaxed transition-colors duration-500">
                 ¡Estamos para ayudarte!
               </p>
             </div>
