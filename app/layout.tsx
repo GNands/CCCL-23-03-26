@@ -6,7 +6,7 @@ import { AppProvider } from '@/components/app-provider';
 import BackToTop from '@/components/back-to-top';
 
 export const metadata: Metadata = {
-  title: 'CCCL|Centro Cultural Chimango Lares',
+  title: 'CCCL | Centro Cultural Chimango Lares',
   description: 'Un espacio de creación y cultura.',
 };
 
