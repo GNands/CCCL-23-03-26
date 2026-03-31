@@ -84,7 +84,7 @@ const proximosEventos = [
 ];
 
 export default function AgendaPage() {
-  const [version, setVersion] = useState<CalendarVersion>('interactive');
+  const [version, setVersion] = useState<CalendarVersion>('grid');
   const [currentMonth, setCurrentMonth] = useState(new Date(2026, 2, 1)); // March 2026
   const [selectedDate, setSelectedDate] = useState(new Date(2026, 2, 23)); // Today-ish for the demo
   const [expandedDay, setExpandedDay] = useState<string | null>(format(new Date(2026, 2, 23), 'yyyy-MM-dd'));

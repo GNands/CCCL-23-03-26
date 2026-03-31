@@ -188,7 +188,7 @@ export default function CreacionSection() {
 
                 {/* Index Number */}
                 <div className="absolute top-8 left-1/2 -translate-x-1/2 md:left-8 md:translate-x-0 z-10">
-                  <span className="text-amber-600/30 dark:text-amber-500/30 font-serif italic text-4xl">0{idx + 1}</span>
+                  <span className="text-amber-600/30 dark:text-amber-500/30 font-serif italic text-4xl drop-shadow-[0_0_8px_rgba(245,158,11,0.5)]">0{idx + 1}</span>
                 </div>
               </motion.div>
             );

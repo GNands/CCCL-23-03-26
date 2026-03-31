@@ -22,6 +22,19 @@ export default function SectionNavigator() {
   const [activeSection, setActiveSection] = useState('Inicio');
   const [isHovered, setIsHovered] = useState(false);
   const [isForcedClosed, setIsForcedClosed] = useState(false);
+  const [hasInteracted, setHasInteracted] = useState(() => {
+    if (typeof window !== 'undefined') {
+      return !!localStorage.getItem('navigator_visited');
+    }
+    return false;
+  });
+
+  const handleInteraction = () => {
+    if (!hasInteracted) {
+      setHasInteracted(true);
+      localStorage.setItem('navigator_visited', 'true');
+    }
+  };
 
   // Calculate active section for subpages directly
   const currentSubpage = sections.find(s => s.id !== 'hero' && pathname.includes(s.id));
@@ -64,19 +77,21 @@ export default function SectionNavigator() {
       onMouseEnter={() => {
         setIsHovered(true);
         setIsForcedClosed(false);
+        handleInteraction();
       }}
       onMouseLeave={() => {
         setIsHovered(false);
         setIsForcedClosed(false);
       }}
+      onClick={handleInteraction}
     >
       <motion.div 
-        className="pointer-events-auto bg-white/80 dark:bg-slate-900/80 backdrop-blur-md border border-amber-500/30 rounded-2xl shadow-xl overflow-hidden transition-opacity duration-500"
+        className={`pointer-events-auto bg-white/80 dark:bg-slate-900/80 backdrop-blur-md border border-amber-500/30 rounded-2xl shadow-xl overflow-hidden transition-opacity duration-500 ${!hasInteracted ? 'shadow-[0_0_20px_rgba(245,158,11,0.4)]' : ''}`}
         initial={false}
         animate={{ 
           width: isOpen ? 240 : 'auto',
           height: isOpen ? 'auto' : 48,
-          opacity: isOpen ? 1 : 0.15
+          opacity: isOpen || !hasInteracted ? 1 : 0.15
         }}
         transition={{ type: 'spring', stiffness: 300, damping: 30 }}
       >

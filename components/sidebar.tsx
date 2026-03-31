@@ -6,33 +6,12 @@ import { useAppContext } from '@/components/app-provider';
 
 export default function Sidebar() {
   const { isMusicPlaying, toggleMusic, language, toggleLanguage, theme, toggleTheme } = useAppContext();
-  const [hasInteracted, setHasInteracted] = useState(() => {
-    if (typeof window !== 'undefined') {
-      return !!localStorage.getItem('sidebar_visited');
-    }
-    return false;
-  });
-
-  const handleInteraction = () => {
-    if (!hasInteracted) {
-      setHasInteracted(true);
-      localStorage.setItem('sidebar_visited', 'true');
-    }
-  };
-
-  const ghostClasses = hasInteracted 
-    ? "opacity-30 hover:opacity-100 transition-opacity duration-500" 
-    : "opacity-100 shadow-[0_0_20px_rgba(245,158,11,0.4)]";
 
   return (
-    <div 
-      className={`fixed right-0 top-1/3 -translate-y-1/2 z-50 group ${ghostClasses}`}
-      onMouseEnter={handleInteraction}
-      onClick={handleInteraction}
-    >
+    <div className="fixed right-0 top-1/3 -translate-y-1/2 z-50 group">
       <div className="bg-white/95 dark:bg-blue-900/95 backdrop-blur-md border border-amber-500/50 border-r-0 rounded-l-2xl p-2 flex flex-col gap-2 translate-x-full group-hover:translate-x-0 transition-transform duration-300 relative shadow-[-10px_0_30px_rgba(245,158,11,0.2)]">
         {/* The visible tab when closed */}
-        <div className={`absolute -left-8 top-1/2 -translate-y-1/2 bg-white/95 dark:bg-blue-900/95 backdrop-blur-md border border-amber-500/50 border-r-0 rounded-l-lg w-8 h-16 flex items-center justify-center cursor-pointer group-hover:opacity-0 transition-opacity duration-300 shadow-[-5px_0_15px_rgba(245,158,11,0.2)] ${!hasInteracted ? 'animate-pulse' : ''}`}>
+        <div className="absolute -left-8 top-1/2 -translate-y-1/2 bg-white/95 dark:bg-blue-900/95 backdrop-blur-md border border-amber-500/50 border-r-0 rounded-l-lg w-8 h-16 flex items-center justify-center cursor-pointer group-hover:opacity-0 transition-opacity duration-300 shadow-[-5px_0_15px_rgba(245,158,11,0.2)]">
           <ChevronLeft className="w-5 h-5 text-amber-600 dark:text-amber-400 animate-bounce-left" />
         </div>
         

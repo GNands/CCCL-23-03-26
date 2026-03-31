@@ -2,6 +2,8 @@
 
 import Sidebar from '@/components/sidebar';
 import Link from 'next/link';
+import Image from 'next/image';
+import { motion } from 'motion/react';
 import { ArrowLeft, Download } from 'lucide-react';
 import { notFound, useParams } from 'next/navigation';
 import BannerMedia from '@/components/banner-media';
@@ -98,9 +100,63 @@ const programasData: Record<string, any> = {
     conformacion: [
       'Elenco artístico variable (músicos, danzantes, narradores).',
       'Mediador cultural/presentador.'
+    ],
+    eventos: [
+      {
+        title: 'Mitos y Leyendas',
+        description: 'Narración de historias ancestrales con acompañamiento musical.',
+        image: 'https://picsum.photos/seed/mitos/400/300'
+      },
+      {
+        title: 'Instrumentos Ancestrales',
+        description: 'Demostración y explicación de pututos, antaras y más.',
+        image: 'https://picsum.photos/seed/instrum/400/300'
+      },
+      {
+        title: 'Danzas Rituales',
+        description: 'Exhibición de danzas sagradas de diferentes regiones.',
+        image: 'https://picsum.photos/seed/rituales/400/300'
+      },
+      {
+        title: 'Teatro de Títeres',
+        description: 'Historias andinas contadas a través de títeres tradicionales.',
+        image: 'https://picsum.photos/seed/titeres/400/300'
+      }
     ]
   }
 };
+
+const talleresEventos = [
+  {
+    title: 'Danza de las Tijeras',
+    description: 'Aprende los pasos y acrobacias de esta danza milenaria.',
+    image: 'https://picsum.photos/seed/tijeras_t/400/300'
+  },
+  {
+    title: 'Violín Andino',
+    description: 'Técnica y repertorio tradicional del violín ayacuchano.',
+    image: 'https://picsum.photos/seed/violin_t/400/300'
+  },
+  {
+    title: 'Arpa Andina',
+    description: 'Domina el instrumento base de la música Chanka.',
+    image: 'https://picsum.photos/seed/arpa_t/400/300'
+  },
+  {
+    title: 'Canto Quechua',
+    description: 'Interpretación de huaynos y yaravíes en lengua originaria.',
+    image: 'https://picsum.photos/seed/canto_t/400/300'
+  },
+  {
+    title: 'Artesanía',
+    description: 'Talleres de cerámica, tejido y retablo ayacuchano.',
+    image: 'https://picsum.photos/seed/artesania_t/400/300'
+  }
+];
+
+// Add eventos to talleres-formativos data
+programasData['talleres-formativos'].eventos = talleresEventos;
+programasData['danza-de-las-tijeras'].eventos = talleresEventos.filter(e => e.title === 'Danza de las Tijeras');
 
 export default function ProgramaPage() {
   const params = useParams();
@@ -184,6 +240,47 @@ export default function ProgramaPage() {
             </div>
           </div>
         </div>
+
+        {/* Carrusel de Eventos/Talleres */}
+        {programa.eventos && (
+          <div className="mt-24">
+            <div className="flex items-center justify-between mb-12">
+              <div>
+                <span className="text-[10px] font-bold uppercase tracking-[0.3em] text-emerald-600 dark:text-emerald-500 mb-2 block">Explora</span>
+                <h3 className="text-3xl font-serif font-bold text-slate-900 dark:text-white">
+                  {id === 'talleres-formativos' ? 'Nuestras especialidades' : 'Nuestras funciones'}
+                </h3>
+              </div>
+            </div>
+
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+              {programa.eventos.map((evento: any, i: number) => (
+                <motion.div 
+                  key={i}
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  transition={{ delay: i * 0.1 }}
+                  className="group bg-white dark:bg-slate-900 rounded-2xl overflow-hidden border border-emerald-500/10 hover:border-emerald-500/30 transition-all shadow-lg hover:shadow-emerald-500/10"
+                >
+                  <div className="relative aspect-video overflow-hidden">
+                    <Image 
+                      src={evento.image} 
+                      alt={evento.title} 
+                      fill 
+                      className="object-cover group-hover:scale-110 transition-transform duration-500"
+                    />
+                  </div>
+                  <div className="p-6">
+                    <h4 className="text-lg font-bold text-slate-900 dark:text-white mb-2">{evento.title}</h4>
+                    <p className="text-sm text-slate-500 dark:text-slate-400 font-light leading-relaxed">
+                      {evento.description}
+                    </p>
+                  </div>
+                </motion.div>
+              ))}
+            </div>
+          </div>
+        )}
       </div>
       
       {/* Footer */}

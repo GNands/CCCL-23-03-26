@@ -87,6 +87,11 @@ export default function RecursosLibreroSection() {
                     {/* Spine Detail */}
                     <div className={`absolute left-0 top-0 bottom-0 w-4 ${resource.spineColor} border-r border-white/10`} />
 
+                    {/* Index Number */}
+                    <div className="absolute top-6 right-6 z-10">
+                      <span className="text-white/20 font-serif italic text-3xl drop-shadow-[0_0_8px_rgba(255,255,255,0.3)]">0{idx + 1}</span>
+                    </div>
+
                     <div className="relative z-10 p-6 flex flex-col h-full ml-2">
                       <div className="w-12 h-12 rounded-full bg-white/90 flex items-center justify-center mb-6 shadow-md">
                         {resource.icon}
