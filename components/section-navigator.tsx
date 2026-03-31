@@ -12,7 +12,7 @@ const sections = [
   { id: 'creacion', name: 'Creación', href: '/#creacion', icon: <Palette className="w-4 h-4" /> },
   { id: 'agenda', name: 'Agenda', href: '/#agenda', icon: <Calendar className="w-4 h-4" /> },
   { id: 'educatividad', name: 'Educatividad', href: '/#educatividad', icon: <GraduationCap className="w-4 h-4" /> },
-  { id: 'servicios', name: 'Trabajemos juntos', href: '/#servicios', icon: <Briefcase className="w-4 h-4" /> },
+  { id: 'trabajemos-juntos', name: 'Trabajemos juntos', href: '/#trabajemos-juntos', icon: <Briefcase className="w-4 h-4" /> },
   { id: 'recursos', name: 'Recursos', href: '/#recursos', icon: <Library className="w-4 h-4" /> },
   { id: 'contacto', name: 'Contacto', href: '/#contacto', icon: <Mail className="w-4 h-4" /> },
 ];

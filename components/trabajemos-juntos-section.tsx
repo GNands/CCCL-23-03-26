@@ -9,16 +9,19 @@ import { useAppContext } from '@/components/app-provider';
 
 const services = [
   {
+    id: 'espectaculos-a-medida',
     icon: <Music className="w-10 h-10 text-amber-500" />,
     title: "Espectáculos a medida",
     description: "Diseñamos presentaciones únicas que se adaptan a la esencia de tu evento, fusionando tradición y modernidad."
   },
   {
+    id: 'produccion-musical-audiovisual',
     icon: <Sparkles className="w-10 h-10 text-amber-500" />,
     title: "Producción musical y audiovisual",
     description: "Capturamos la sonoridad y estética andina con los más altos estándares de calidad profesional."
   },
   {
+    id: 'asesoria-consultoria-cultural',
     icon: <Briefcase className="w-10 h-10 text-amber-500" />,
     title: "Asesoría y consultoría cultural",
     description: "Acompañamos tus proyectos con nuestra experiencia en gestión y salvaguardia del patrimonio inmaterial."
@@ -26,9 +29,9 @@ const services = [
 ];
 
 const mainImages = [
-  "https://picsum.photos/seed/servicios1/800/600",
-  "https://picsum.photos/seed/servicios2/800/600",
-  "https://picsum.photos/seed/servicios3/800/600",
+  "https://picsum.photos/seed/trabajemos-juntos1/800/600",
+  "https://picsum.photos/seed/trabajemos-juntos2/800/600",
+  "https://picsum.photos/seed/trabajemos-juntos3/800/600",
 ];
 
 export default function TrabajemosJuntosSection() {
@@ -42,7 +45,7 @@ export default function TrabajemosJuntosSection() {
     return () => clearInterval(interval);
   }, []);
   return (
-    <section id="servicios" className="relative z-10 py-32 w-full">
+    <section id="trabajemos-juntos" className="relative z-10 py-32 w-full">
       {/* Glow Center */}
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-amber-400/20 blur-[200px] rounded-full pointer-events-none z-0" />
 
@@ -71,7 +74,7 @@ export default function TrabajemosJuntosSection() {
               >
                 <Image 
                   src={mainImages[currentImageIndex]} 
-                  alt="Servicios Artísticos" 
+                  alt="Trabajemos juntos" 
                   fill 
                   className="object-cover" 
                 />
@@ -82,35 +85,36 @@ export default function TrabajemosJuntosSection() {
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8 md:gap-12 mb-16 max-w-6xl mx-auto">
           {services.map((service, idx) => (
-            <motion.div 
-              key={idx}
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: idx * 0.2, duration: 0.6 }}
-              className="bg-white/80 dark:bg-slate-900/80 backdrop-blur-md border border-slate-200 dark:border-slate-800 hover:border-amber-500/50 rounded-3xl p-10 transition-all group flex flex-col items-start text-left hover:shadow-[0_20px_40px_rgba(0,0,0,0.1)] relative overflow-hidden"
-            >
-              {/* Corner accent */}
-              <div className="absolute top-0 right-0 w-24 h-24 bg-amber-500/10 rounded-bl-[5rem] -mr-8 -mt-8 group-hover:bg-amber-500/20 transition-colors" />
-              
-              <div className="w-16 h-16 rounded-2xl bg-stone-50 dark:bg-slate-950 border border-slate-200 dark:border-slate-800 flex items-center justify-center mb-8 group-hover:scale-110 group-hover:rotate-3 transition-all duration-500 shadow-sm relative z-10">
-                {service.icon}
-              </div>
-              <h3 className="text-2xl font-serif font-bold text-slate-900 dark:text-white mb-4 relative z-10 transition-colors duration-500">{service.title}</h3>
-              <p className="text-slate-500 dark:text-slate-400 text-base leading-relaxed relative z-10 transition-colors duration-500 font-light">
-                {service.description}
-              </p>
-              
-              <div className="mt-8 pt-6 border-t border-slate-100 dark:border-slate-800 w-full flex items-center justify-between opacity-0 group-hover:opacity-100 transition-opacity duration-500">
-                <span className="text-[10px] font-bold uppercase tracking-widest text-amber-600">Saber más</span>
-                <ArrowUpRight className="w-4 h-4 text-amber-600" />
-              </div>
-            </motion.div>
+            <Link key={idx} href={`/trabajemos-juntos/${service.id}`}>
+              <motion.div 
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: idx * 0.2, duration: 0.6 }}
+                className="bg-white/80 dark:bg-slate-900/80 backdrop-blur-md border border-slate-200 dark:border-slate-800 hover:border-amber-500/50 rounded-3xl p-10 transition-all group flex flex-col items-start text-left hover:shadow-[0_20px_40px_rgba(0,0,0,0.1)] relative overflow-hidden h-full"
+              >
+                {/* Corner accent */}
+                <div className="absolute top-0 right-0 w-24 h-24 bg-amber-500/10 rounded-bl-[5rem] -mr-8 -mt-8 group-hover:bg-amber-500/20 transition-colors" />
+                
+                <div className="w-16 h-16 rounded-2xl bg-stone-50 dark:bg-slate-950 border border-slate-200 dark:border-slate-800 flex items-center justify-center mb-8 group-hover:scale-110 group-hover:rotate-3 transition-all duration-500 shadow-sm relative z-10">
+                  {service.icon}
+                </div>
+                <h3 className="text-2xl font-serif font-bold text-slate-900 dark:text-white mb-4 relative z-10 transition-colors duration-500">{service.title}</h3>
+                <p className="text-slate-500 dark:text-slate-400 text-base leading-relaxed relative z-10 transition-colors duration-500 font-light">
+                  {service.description}
+                </p>
+                
+                <div className="mt-auto pt-6 border-t border-slate-100 dark:border-slate-800 w-full flex items-center justify-between opacity-0 group-hover:opacity-100 transition-opacity duration-500">
+                  <span className="text-[10px] font-bold uppercase tracking-widest text-amber-600">Saber más</span>
+                  <ArrowUpRight className="w-4 h-4 text-amber-600" />
+                </div>
+              </motion.div>
+            </Link>
           ))}
         </div>
 
         <div className="flex justify-center mt-12">
-          <Link href="/servicios" className="group flex items-center gap-3 px-8 py-4 bg-transparent border border-amber-500 text-amber-500 hover:bg-amber-500 hover:text-white rounded-full font-medium transition-all">
+          <Link href="/trabajemos-juntos" className="group flex items-center gap-3 px-8 py-4 bg-transparent border border-amber-500 text-amber-500 hover:bg-amber-500 hover:text-white rounded-full font-medium transition-all">
             {t('servicios.btn')}
             <ArrowUpRight className="w-5 h-5 group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform" />
           </Link>

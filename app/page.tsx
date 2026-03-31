@@ -265,7 +265,7 @@ export default function Home() {
               <FileText className="w-6 h-6" />
               {t('cta.btn')}
             </Link>
-            <Link href="/servicios" className="text-amber-600 dark:text-amber-500 font-medium underline underline-offset-4 hover:text-amber-500 dark:hover:text-amber-400 transition-colors">
+            <Link href="/trabajemos-juntos" className="text-amber-600 dark:text-amber-500 font-medium underline underline-offset-4 hover:text-amber-500 dark:hover:text-amber-400 transition-colors">
               Agenda una Reunión con Nosotros
             </Link>
           </div>

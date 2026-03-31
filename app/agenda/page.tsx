@@ -785,7 +785,7 @@ export default function AgendaPage() {
         <div className="mt-32">
           <div className="flex items-center justify-between mb-12">
             <h3 className="text-3xl font-bold text-slate-900 dark:text-white">Eventos Imperdibles</h3>
-            <Link href="/servicios" className="text-amber-600 dark:text-amber-500 font-bold flex items-center gap-2 hover:underline">
+            <Link href="/trabajemos-juntos" className="text-amber-600 dark:text-amber-500 font-bold flex items-center gap-2 hover:underline">
               Ver todos los servicios <ArrowRight className="w-4 h-4" />
             </Link>
           </div>

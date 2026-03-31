@@ -10,7 +10,7 @@ const simplifiedLinks = [
   { name: 'Inicio', href: '/' },
   { name: 'El Centro', href: '/el-centro' },
   { name: 'Agenda', href: '/agenda' },
-  { name: 'Servicios', href: '/servicios' },
+  { name: 'Trabajemos juntos', href: '/trabajemos-juntos' },
   { name: 'Educatividad', href: '/educatividad' },
   { name: 'Creación', href: '/creacion' },
   { name: 'Recursos', href: '/recursos' },
@@ -25,7 +25,7 @@ const expandedLinks = [
       { name: 'Inicio', href: '/' },
       { name: 'El Centro', href: '/el-centro' },
       { name: 'Agenda', href: '/agenda' },
-      { name: 'Servicios', href: '/servicios' },
+      { name: 'Trabajemos juntos', href: '/trabajemos-juntos' },
     ]
   },
   {

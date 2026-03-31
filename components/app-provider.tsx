@@ -45,7 +45,7 @@ const translations: Record<Language, Record<string, string>> = {
     'agenda.btn': 'Ver Calendario Completo',
     'creacion.title': 'Creación',
     'creacion.subtitle': 'Nuestras obras',
-    'servicios.title': 'Servicios Artísticos',
+    'servicios.title': 'Trabajemos juntos',
     'servicios.subtitle': 'Trabajemos juntos',
     'servicios.btn': 'Conoce más',
     'recursos.title': 'Conocimiento',

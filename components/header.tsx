@@ -56,7 +56,7 @@ export default function Header() {
           <Link href="/creacion" className="hover:text-amber-600 dark:hover:text-amber-400 transition-colors">Creación</Link>
           <Link href="/agenda" className="hover:text-amber-600 dark:hover:text-amber-400 transition-colors">Agenda</Link>
           <Link href="/educatividad" className="hover:text-amber-600 dark:hover:text-amber-400 transition-colors">Educatividad</Link>
-          <Link href="/servicios" className="hover:text-amber-600 dark:hover:text-amber-400 transition-colors">Trabajemos juntos</Link>
+          <Link href="/trabajemos-juntos" className="hover:text-amber-600 dark:hover:text-amber-400 transition-colors">Trabajemos juntos</Link>
           <Link href="/recursos" className="hover:text-amber-600 dark:hover:text-amber-400 transition-colors">Recursos</Link>
           <Link href="/contacto" className="hover:text-amber-600 dark:hover:text-amber-400 transition-colors">Contacto</Link>
         </nav>

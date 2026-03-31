@@ -31,7 +31,7 @@ const servicios = [
   }
 ];
 
-export default function ServiciosPage() {
+export default function TrabajemosJuntosPage() {
   return (
     <main className="relative min-h-screen bg-stone-50 dark:bg-slate-950 text-slate-700 dark:text-slate-200 font-sans overflow-x-hidden selection:bg-blue-500/30 transition-colors duration-500">
       <Sidebar />
@@ -67,7 +67,7 @@ export default function ServiciosPage() {
       <section className="relative z-10 py-24 w-full">
         <div className="relative z-10 px-6 lg:px-10 max-w-5xl mx-auto w-full">
           <div className="text-center mb-16">
-            <span className="text-[10px] font-bold uppercase tracking-[0.4em] text-blue-600 dark:text-blue-500 mb-4 block">Servicios</span>
+            <span className="text-[10px] font-bold uppercase tracking-[0.4em] text-blue-600 dark:text-blue-500 mb-4 block">Cooperemos</span>
             <h2 className="text-3xl md:text-4xl lg:text-5xl font-serif font-bold text-slate-900 dark:text-white mb-6">Trabajemos juntos</h2>
             <p className="text-lg text-slate-600 dark:text-slate-300 leading-relaxed max-w-3xl mx-auto font-light">
               Ofrecemos una amplia gama de servicios artísticos y culturales, respaldados por años de experiencia y un profundo conocimiento de nuestras tradiciones. Ya sea que busques un espectáculo inolvidable, una producción de alta calidad o asesoría experta, nuestro equipo de profesionales está listo para hacer realidad tu visión.
@@ -93,7 +93,7 @@ export default function ServiciosPage() {
                   <p className="text-lg text-slate-600 dark:text-slate-300 leading-relaxed mb-8 font-light">
                     {servicio.sumilla}
                   </p>
-                  <Link href={`/servicios/${servicio.id}`} className="inline-flex items-center gap-2 text-amber-600 dark:text-amber-500 font-medium hover:text-amber-500 dark:hover:text-amber-400 transition-colors group">
+                  <Link href={`/trabajemos-juntos/${servicio.id}`} className="inline-flex items-center gap-2 text-amber-600 dark:text-amber-500 font-medium hover:text-amber-500 dark:hover:text-amber-400 transition-colors group">
                     Solicitar información
                     <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
                   </Link>
