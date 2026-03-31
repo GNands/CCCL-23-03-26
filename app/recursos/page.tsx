@@ -14,6 +14,7 @@ const recursos = [
     subtitle: 'Imágenes que capturan la esencia de nuestras tradiciones.',
     sumilla: 'Explora nuestra extensa colección de fotografías que documentan festividades, rituales, presentaciones artísticas y la vida cotidiana en las comunidades andinas. Un viaje visual a través de nuestra historia y diversidad cultural.',
     image: 'https://picsum.photos/seed/galeria1/800/600',
+    link: '/recursos/galeria?tag=fotos'
   },
   {
     id: 'archivo-audiovisual',
@@ -21,6 +22,7 @@ const recursos = [
     subtitle: 'Sonidos y movimientos de los Andes.',
     sumilla: 'Accede a nuestro archivo de videos y grabaciones sonoras, que incluye registros de espectáculos, documentales, entrevistas a maestros tradicionales y material inédito sobre la Danza de las Tijeras y la música Chanka.',
     image: 'https://picsum.photos/seed/audiovisual1/800/600',
+    link: '/recursos/galeria?tag=videos'
   },
   {
     id: 'publicaciones-investigaciones',
@@ -28,6 +30,15 @@ const recursos = [
     subtitle: 'Conocimiento para preservar nuestro legado.',
     sumilla: 'Descubre artículos, ensayos, libros y material didáctico producido por el Centro Cultural y sus colaboradores. Recursos invaluables para estudiantes, investigadores y amantes de la cultura andina.',
     image: 'https://picsum.photos/seed/publicaciones1/800/600',
+    link: '/recursos/articulos'
+  },
+  {
+    id: 'directorio-artistas',
+    title: 'Directorio de artistas',
+    subtitle: 'Conexión con el talento y la maestría.',
+    sumilla: 'Un espacio dedicado a visibilizar y conectar con los artistas, músicos y danzantes que forman parte de nuestra red. Encuentra perfiles detallados, trayectorias y formas de contacto para colaboraciones y proyectos culturales.',
+    image: 'https://picsum.photos/seed/artistas1/800/600',
+    link: '/recursos/directorio'
   }
 ];
 
@@ -102,7 +113,7 @@ export default function RecursosPage() {
                   <p className="text-lg text-slate-600 dark:text-slate-300 leading-relaxed mb-8 font-light">
                     {recurso.sumilla}
                   </p>
-                  <Link href={`/recursos/${recurso.id}`} className="inline-flex items-center gap-2 text-amber-600 dark:text-amber-500 font-medium hover:text-amber-500 dark:hover:text-amber-400 transition-colors group">
+                  <Link href={recurso.link} className="inline-flex items-center gap-2 text-amber-600 dark:text-amber-500 font-medium hover:text-amber-500 dark:hover:text-amber-400 transition-colors group">
                     Explorar colección
                     <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
                   </Link>

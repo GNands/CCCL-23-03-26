@@ -9,12 +9,21 @@ import { useAppContext } from '@/components/app-provider';
 const resources = [
   {
     type: 'gallery',
-    title: "Galería y Videoteca",
-    description: "Registramos y recuperamos en fotografía y video importantes momentos de nuestro calendario religioso, agrícola y festivo.",
+    title: "Galería Fotográfica",
+    description: "Registramos y recuperamos en fotografía importantes momentos de nuestro calendario religioso, agrícola y festivo.",
     icon: <ImageIcon className="w-5 h-5 text-amber-900" />,
     color: "bg-amber-600",
     spineColor: "bg-amber-700",
-    link: "/recursos/galeria"
+    link: "/recursos/galeria?tag=fotos"
+  },
+  {
+    type: 'video',
+    title: "Archivo Audiovisual",
+    description: "Recopilación de videos y sonidos que capturan la esencia del movimiento y la música andina.",
+    icon: <BookOpen className="w-5 h-5 text-emerald-900" />,
+    color: "bg-emerald-600",
+    spineColor: "bg-emerald-700",
+    link: "/recursos/galeria?tag=videos"
   },
   {
     type: 'articles',
@@ -41,9 +50,6 @@ export default function RecursosLibreroSection() {
 
   return (
     <section id="recursos" className="relative z-10 py-32 w-full">
-      {/* Glow Left */}
-      <div className="absolute top-1/2 left-0 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-indigo-400/20 blur-[150px] rounded-full pointer-events-none z-0" />
-
       <div className="relative z-10 px-6 lg:px-10 max-w-[1400px] mx-auto w-full">
         <div className="flex flex-col md:flex-row items-center justify-between mb-24">
           <div className="max-w-2xl mb-8 md:mb-0">

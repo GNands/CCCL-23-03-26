@@ -66,7 +66,6 @@ const expandedLinks = [
 ];
 
 export default function Footer() {
-  const [isExpanded, setIsExpanded] = useState(false);
   const currentYear = new Date().getFullYear();
 
   return (
@@ -76,50 +75,26 @@ export default function Footer() {
         {/* Header / Title */}
         <div className="flex items-center justify-between mb-6 border-b border-[#444444] dark:border-[#333333] pb-4">
           <h2 className="text-xl md:text-2xl font-bold text-white">Explora el Centro Cultural</h2>
-          <button 
-            onClick={() => setIsExpanded(!isExpanded)}
-            className="flex items-center gap-2 text-sm hover:text-white transition-colors bg-[#333333] dark:bg-[#222222] px-4 py-2 rounded-full"
-          >
-            {isExpanded ? (
-              <>Vista simplificada <ChevronUp className="w-4 h-4" /></>
-            ) : (
-              <>Vista ampliada <ChevronDown className="w-4 h-4" /></>
-            )}
-          </button>
         </div>
 
-        {/* Content Area */}
+        {/* Content Area - Always Expanded */}
         <div className="transition-all duration-500 ease-in-out overflow-hidden">
-          {!isExpanded ? (
-            /* Simplified View (BBC Style) */
-            <div className="flex flex-wrap mb-8">
-              {simplifiedLinks.map((link, idx) => (
-                <div key={idx} className={`flex items-center py-2 ${idx < simplifiedLinks.length - 1 ? 'pr-4 md:pr-6 mr-4 md:mr-6 border-r border-[#444444] dark:border-[#333333]' : ''}`}>
-                  <Link href={link.href} className="hover:text-white hover:underline transition-colors font-bold text-sm md:text-base">
-                    {link.name}
-                  </Link>
-                </div>
-              ))}
-            </div>
-          ) : (
-            /* Expanded View (Apple Style) */
-            <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-8 mb-8">
-              {expandedLinks.map((column, idx) => (
-                <div key={idx} className="flex flex-col">
-                  <h3 className="text-white font-semibold mb-4 text-sm md:text-base">{column.title}</h3>
-                  <ul className="flex flex-col gap-3">
-                    {column.links.map((link, linkIdx) => (
-                      <li key={linkIdx}>
-                        <Link href={link.href} className="hover:text-white hover:underline transition-colors text-xs md:text-sm">
-                          {link.name}
-                        </Link>
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-              ))}
-            </div>
-          )}
+          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-8 mb-8">
+            {expandedLinks.map((column, idx) => (
+              <div key={idx} className="flex flex-col">
+                <h3 className="text-white font-semibold mb-4 text-sm md:text-base">{column.title}</h3>
+                <ul className="flex flex-col gap-3">
+                  {column.links.map((link, linkIdx) => (
+                    <li key={linkIdx}>
+                      <Link href={link.href} className="hover:text-white hover:underline transition-colors text-xs md:text-sm">
+                        {link.name}
+                      </Link>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            ))}
+          </div>
         </div>
 
         {/* Bottom Utility Links & Copyright */}

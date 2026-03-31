@@ -16,19 +16,9 @@ import { useAppContext } from '@/components/app-provider';
 
 const educatividadData = [
   {
-    id: "danza-de-las-tijeras",
-    title: "Danza de las Tijeras",
-    description: "Sinónimo de tradición, conexión espiritual y resistencia cultural, declarado Patrimonio Cultural de la Humanidad.",
-    images: [
-      "https://picsum.photos/seed/tijeras1/600/600",
-      "https://picsum.photos/seed/tijeras2/600/600",
-      "https://picsum.photos/seed/tijeras3/600/600"
-    ]
-  },
-  {
     id: "talleres-formativos",
     title: "Talleres formativos",
-    description: "El violín, el arpa y la danza, escencia del arte Chanka.",
+    description: "Aprende los secretos de la Danza de las Tijeras, el violín y el arpa, guiado por maestros herederos de la tradición Chanka.",
     images: [
       "https://picsum.photos/seed/talleres1/600/600",
       "https://picsum.photos/seed/talleres2/600/600",
@@ -38,7 +28,7 @@ const educatividadData = [
   {
     id: "funciones-didacticas",
     title: "Funciones didácticas",
-    description: "Experimenta el poder transformador de las artes y las manifestaciones andinas.",
+    description: "Experimenta el poder transformador de las artes y las manifestaciones andinas a través de presentaciones interactivas.",
     images: [
       "https://picsum.photos/seed/funciones1/600/600",
       "https://picsum.photos/seed/funciones2/600/600",
@@ -113,17 +103,16 @@ export default function Home() {
 
       {/* El Centro Section */}
       <section id="el-centro" className="relative z-10 py-24 w-full flex flex-col items-center text-center">
-        {/* Glow Left */}
-        <div className="absolute top-1/2 left-0 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-amber-400/30 blur-[150px] rounded-full pointer-events-none z-0" />
-        
         <div className="relative z-10 px-6 lg:px-10 max-w-7xl mx-auto flex flex-col items-center w-full">
           <div className="max-w-3xl mb-16 space-y-6 flex flex-col items-center">
             <Link href="/el-centro" className="px-10 py-2 rounded-full border border-amber-500/50 text-amber-600 dark:text-amber-400 text-sm uppercase tracking-widest hover:bg-amber-500/10 transition-colors mb-2">
               {t('elcentro.btn')}
             </Link>
-            <h2 className="text-4xl md:text-5xl lg:text-7xl font-serif font-bold tracking-tight text-slate-900 dark:text-white transition-colors duration-500">
-              {t('elcentro.title1')} <span className="italic font-light text-blue-500">{t('elcentro.title2')}</span>
-            </h2>
+            <Link href="/el-centro" className="group">
+              <h2 className="text-4xl md:text-5xl lg:text-7xl font-serif font-bold tracking-tight text-slate-900 dark:text-white transition-all duration-500 group-hover:text-amber-500 group-hover:drop-shadow-[0_0_15px_rgba(245,158,11,0.5)]">
+                {t('elcentro.title1')} <span className="italic font-light text-blue-500 group-hover:text-blue-400">{t('elcentro.title2')}</span>
+              </h2>
+            </Link>
             <p className="text-lg md:text-xl text-slate-600 dark:text-slate-300 leading-relaxed transition-colors duration-500 font-light max-w-2xl">
               {t('elcentro.desc')}
             </p>
@@ -135,18 +124,15 @@ export default function Home() {
 
       {/* Behind the Scenes Section */}
       <section className="relative z-10 py-32 w-full overflow-hidden bg-slate-900 text-white">
-        <div className="absolute top-0 left-0 w-full h-full opacity-20 pointer-events-none">
-          <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-amber-500/20 blur-[120px] rounded-full" />
-          <div className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-blue-500/20 blur-[120px] rounded-full" />
-        </div>
-
         <div className="relative z-10 px-6 lg:px-10 max-w-7xl mx-auto">
           <div className="flex flex-col md:flex-row items-end justify-between mb-16 gap-8">
             <div className="max-w-2xl">
               <h3 className="text-xs font-bold uppercase tracking-[0.4em] text-amber-500 mb-4">Proceso Creativo</h3>
-              <h2 className="text-4xl md:text-6xl font-serif font-bold leading-tight">
-                Detrás de <span className="italic font-light text-slate-400">Escena</span>
-              </h2>
+              <Link href="/el-centro" className="group">
+                <h2 className="text-4xl md:text-6xl font-serif font-bold leading-tight transition-all duration-500 group-hover:text-amber-500 group-hover:drop-shadow-[0_0_15px_rgba(245,158,11,0.5)]">
+                  Detrás de <span className="italic font-light text-slate-400 group-hover:text-slate-300">Escena</span>
+                </h2>
+              </Link>
             </div>
             <p className="text-slate-400 font-light max-w-sm text-sm leading-relaxed">
               Explora la intimidad de nuestros ensayos, la fabricación de instrumentos y la vida cotidiana en el centro cultural.
@@ -205,23 +191,26 @@ export default function Home() {
       </section>
 
       {/* Creación Section */}
-      <CreacionSection />
+      <div className="py-12 bg-stone-50 dark:bg-slate-950 transition-colors duration-500">
+        <CreacionSection />
+      </div>
 
       {/* Agenda Section */}
-      <AgendaSection />
+      <div className="py-12 bg-stone-50 dark:bg-slate-950 transition-colors duration-500">
+        <AgendaSection />
+      </div>
 
       {/* Educatividad Section */}
       <section id="educatividad" className="relative z-10 py-32 w-full">
-        {/* Glow Left */}
-        <div className="absolute top-1/2 left-0 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-emerald-600/20 blur-[150px] rounded-full pointer-events-none z-0" />
-        
         <div className="relative z-10 px-6 lg:px-10 max-w-[1400px] mx-auto w-full">
           <div className="flex flex-col md:flex-row items-end justify-between mb-16 gap-4">
             <div>
               <h3 className="text-xs font-bold uppercase tracking-[0.4em] text-amber-600 dark:text-amber-500 mb-4">Formación Cultural</h3>
-              <h2 className="text-4xl md:text-5xl font-serif font-bold tracking-tight text-slate-900 dark:text-white transition-colors duration-500">
-                {t('educatividad.title')}
-              </h2>
+              <Link href="/educatividad" className="group">
+                <h2 className="text-4xl md:text-5xl font-serif font-bold tracking-tight text-slate-900 dark:text-white transition-all duration-500 group-hover:text-emerald-500 group-hover:drop-shadow-[0_0_15px_rgba(16,185,129,0.5)]">
+                  {t('educatividad.title')}
+                </h2>
+              </Link>
             </div>
             <Link href="/educatividad" className="text-amber-600/80 dark:text-amber-500/60 text-[10px] font-bold uppercase tracking-[0.2em] border-b border-amber-500/30 pb-1 hover:text-amber-500 dark:hover:text-amber-400 transition-colors duration-500 cursor-pointer">
               {t('educatividad.subtitle')}
@@ -229,7 +218,10 @@ export default function Home() {
           </div>
 
           <div className="relative flex items-center">
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-6 lg:gap-8 w-full pr-16">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-12 lg:gap-20 w-full pr-16 relative">
+              {/* Divider Line */}
+              <div className="hidden md:block absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-px h-3/4 bg-emerald-500/30" />
+              
               {educatividadData.map((item, idx) => (
                 <EducatividadCard 
                   key={idx}
@@ -253,17 +245,18 @@ export default function Home() {
       <TrabajemosJuntosSection />
 
       {/* Recursos Section */}
-      <RecursosLibreroSection />
+      <div className="py-12 bg-stone-50 dark:bg-slate-950 transition-colors duration-500">
+        <RecursosLibreroSection />
+      </div>
 
       {/* CTA Cotización */}
       <section className="relative z-10 py-32 w-full flex flex-col items-center justify-center text-center px-6">
-        {/* Glow Center */}
-        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-amber-400/20 dark:bg-amber-600/10 blur-[150px] rounded-full pointer-events-none z-0 transition-colors duration-500" />
-        
         <div className="relative z-10 max-w-3xl mx-auto">
-          <h2 className="text-4xl md:text-5xl font-bold tracking-tight text-slate-900 dark:text-white mb-6 transition-colors duration-500">
-            {t('cta.title1')} <span className="text-amber-500">{t('cta.title2')}</span>
-          </h2>
+          <Link href="/contacto" className="group">
+            <h2 className="text-4xl md:text-5xl font-bold tracking-tight text-slate-900 dark:text-white mb-6 transition-all duration-500 group-hover:text-amber-500 group-hover:drop-shadow-[0_0_15px_rgba(245,158,11,0.5)]">
+              {t('cta.title1')} <span className="text-amber-500">{t('cta.title2')}</span>
+            </h2>
+          </Link>
           <p className="text-lg text-slate-600 dark:text-slate-300 mb-10 leading-relaxed transition-colors duration-500">
             {t('cta.desc')}
           </p>

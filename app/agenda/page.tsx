@@ -170,7 +170,7 @@ export default function AgendaPage() {
     { id: 'todos', name: 'Todos' },
     { id: 'espectaculo', name: 'Espectáculos' },
     { id: 'taller', name: 'Talleres' },
-    { id: 'exposicion', name: 'Exposiciones' },
+    { id: 'exposicion', name: 'Exposiciones y Actividades Académicas' },
   ];
 
   const moods = [
@@ -551,7 +551,7 @@ export default function AgendaPage() {
                                           ev.type === 'taller' ? 'bg-emerald-100 text-emerald-700 dark:bg-emerald-900/30 dark:text-emerald-400' :
                                           'bg-purple-100 text-purple-700 dark:bg-purple-900/30 dark:text-purple-400'
                                         }`}>
-                                          {ev.type}
+                                          {ev.type === 'exposicion' ? 'Exposiciones y Actividades Académicas' : ev.type}
                                         </span>
                                         <h5 className="text-xl font-bold text-slate-900 dark:text-white mb-2">{ev.title}</h5>
                                         <p className="text-sm text-slate-600 dark:text-slate-400 mb-4 leading-relaxed">
