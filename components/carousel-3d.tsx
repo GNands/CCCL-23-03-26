@@ -6,13 +6,13 @@ import Image from 'next/image';
 import { Download, X, ChevronLeft, ChevronRight } from 'lucide-react';
 
 const images = [
-  "https://picsum.photos/seed/cultura1/400/600",
-  "https://picsum.photos/seed/cultura2/400/600",
-  "https://picsum.photos/seed/cultura3/400/600",
-  "https://picsum.photos/seed/cultura4/400/600",
-  "https://picsum.photos/seed/cultura5/400/600",
-  "https://picsum.photos/seed/cultura6/400/600",
-  "https://picsum.photos/seed/cultura7/400/600",
+  "https://images.unsplash.com/photo-1516450360452-9312f5e86fc7?w=800&auto=format&fit=crop&q=80",
+  "https://images.unsplash.com/photo-1514525253161-7a46d19cd819?w=800&auto=format&fit=crop&q=80",
+  "https://images.unsplash.com/photo-1508700115892-45ecd05ae2ad?w=800&auto=format&fit=crop&q=80",
+  "https://images.unsplash.com/photo-1465847899084-d164df4dedc6?w=800&auto=format&fit=crop&q=80",
+  "https://images.unsplash.com/photo-1533174072545-7a4b6ad7a6c3?w=800&auto=format&fit=crop&q=80",
+  "https://images.unsplash.com/photo-1612225330812-01a9c6b355ec?w=800&auto=format&fit=crop&q=80",
+  "https://images.unsplash.com/photo-1579783900882-c0d3dad7b119?w=800&auto=format&fit=crop&q=80",
 ];
 
 export default function Carousel3D() {

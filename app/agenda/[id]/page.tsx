@@ -15,15 +15,15 @@ const eventosData: Record<string, any> = {
     time: '19:00 hrs',
     location: 'Gran Teatro Nacional',
     address: 'Av. Javier Prado Este 2225, San Borja',
-    image: 'https://picsum.photos/seed/yaku1/1200/600',
+    image: 'https://images.unsplash.com/photo-1465847899084-d164df4dedc6?w=1200&auto=format&fit=crop&q=80',
     videoUrl: 'https://www.youtube.com/watch?v=dQw4w9WgXcQ', // Placeholder
     gallery: [
-      'https://picsum.photos/seed/yaku1/800/600',
-      'https://picsum.photos/seed/yaku2/800/600',
-      'https://picsum.photos/seed/yaku3/800/600',
-      'https://picsum.photos/seed/yaku4/800/600',
-      'https://picsum.photos/seed/yaku5/800/600',
-      'https://picsum.photos/seed/yaku6/800/600',
+      'https://images.unsplash.com/photo-1465847899084-d164df4dedc6?w=800&auto=format&fit=crop&q=80',
+      'https://images.unsplash.com/photo-1514525253161-7a46d19cd819?w=800&auto=format&fit=crop&q=80',
+      'https://images.unsplash.com/photo-1508700115892-45ecd05ae2ad?w=800&auto=format&fit=crop&q=80',
+      'https://images.unsplash.com/photo-1511671782779-c97d3d27a1d4?w=800&auto=format&fit=crop&q=80',
+      'https://images.unsplash.com/photo-1533174072545-7a4b6ad7a6c3?w=800&auto=format&fit=crop&q=80',
+      'https://images.unsplash.com/photo-1544717305-2782549b5136?w=800&auto=format&fit=crop&q=80',
     ],
     description: [
       '"La Gran Fiesta del Agua" es un espectáculo que celebra la festividad andina de agradecimiento a la Pachamama por sus infinitas bondades.',
@@ -40,12 +40,12 @@ const eventosData: Record<string, any> = {
     time: 'Varios horarios',
     location: 'Centro Cultural Chimango Lares',
     address: 'Av. Cultural 123, Distrito',
-    image: 'https://picsum.photos/seed/talleres1/1200/600',
+    image: 'https://images.unsplash.com/photo-1514525253161-7a46d19cd819?w=1200&auto=format&fit=crop&q=80',
     videoUrl: 'https://www.youtube.com/watch?v=dQw4w9WgXcQ', // Placeholder
     gallery: [
-      'https://picsum.photos/seed/talleres1/800/600',
-      'https://picsum.photos/seed/talleres2/800/600',
-      'https://picsum.photos/seed/talleres3/800/600',
+      'https://images.unsplash.com/photo-1514525253161-7a46d19cd819?w=800&auto=format&fit=crop&q=80',
+      'https://images.unsplash.com/photo-1612225330812-01a9c6b355ec?w=800&auto=format&fit=crop&q=80',
+      'https://images.unsplash.com/photo-1508700115892-45ecd05ae2ad?w=800&auto=format&fit=crop&q=80',
     ],
     description: [
       'Aprende a tocar el violín andino con los maestros del Centro Cultural Chimango Lares.',

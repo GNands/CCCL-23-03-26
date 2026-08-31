@@ -20,9 +20,9 @@ const educatividadData = [
     title: "Talleres formativos",
     description: "Aprende los secretos de la Danza de las Tijeras, el violín y el arpa, guiado por maestros herederos de la tradición Chanka.",
     images: [
-      "https://picsum.photos/seed/talleres1/600/600",
-      "https://picsum.photos/seed/talleres2/600/600",
-      "https://picsum.photos/seed/talleres3/600/600"
+      "https://images.unsplash.com/photo-1514525253161-7a46d19cd819?w=600&auto=format&fit=crop&q=80",
+      "https://images.unsplash.com/photo-1612225330812-01a9c6b355ec?w=600&auto=format&fit=crop&q=80",
+      "https://images.unsplash.com/photo-1511671782779-c97d3d27a1d4?w=600&auto=format&fit=crop&q=80"
     ]
   },
   {
@@ -30,9 +30,9 @@ const educatividadData = [
     title: "Funciones didácticas",
     description: "Experimenta el poder transformador de las artes y las manifestaciones andinas a través de presentaciones interactivas.",
     images: [
-      "https://picsum.photos/seed/funciones1/600/600",
-      "https://picsum.photos/seed/funciones2/600/600",
-      "https://picsum.photos/seed/funciones3/600/600"
+      "https://images.unsplash.com/photo-1508700115892-45ecd05ae2ad?w=600&auto=format&fit=crop&q=80",
+      "https://images.unsplash.com/photo-1465847899084-d164df4dedc6?w=600&auto=format&fit=crop&q=80",
+      "https://images.unsplash.com/photo-1533174072545-7a4b6ad7a6c3?w=600&auto=format&fit=crop&q=80"
     ]
   }
 ];
@@ -55,7 +55,7 @@ export default function Home() {
           playsInline
           suppressHydrationWarning
           className="absolute inset-0 w-full h-full object-cover opacity-40 mix-blend-luminosity"
-          poster="https://picsum.photos/seed/hero-poster/1920/1080?blur=10"
+          poster="https://images.unsplash.com/photo-1516450360452-9312f5e86fc7?w=1920&auto=format&fit=crop&q=80"
         >
           <source src="https://storage.googleapis.com/gtv-videos-bucket/sample/TearsOfSteel.mp4" type="video/mp4" />
         </video>
@@ -105,7 +105,10 @@ export default function Home() {
       <section id="el-centro" className="relative z-10 py-24 w-full flex flex-col items-center text-center">
         <div className="relative z-10 px-6 lg:px-10 max-w-7xl mx-auto flex flex-col items-center w-full">
           <div className="max-w-3xl mb-16 space-y-6 flex flex-col items-center">
-            <Link href="/el-centro" className="px-10 py-2 rounded-full border border-amber-500/50 text-amber-600 dark:text-amber-400 text-sm uppercase tracking-widest hover:bg-amber-500/10 transition-colors mb-2">
+            <Link 
+              href="/el-centro" 
+              className="px-10 py-2.5 rounded-full border border-amber-500/60 text-amber-600 dark:text-amber-400 text-sm uppercase tracking-widest hover:bg-amber-500/10 transition-all mb-2 animate-pulse-subtle shadow-[0_0_15px_rgba(245,158,11,0.2)]"
+            >
               {t('elcentro.btn')}
             </Link>
             <Link href="/el-centro" className="group">
@@ -119,74 +122,6 @@ export default function Home() {
           </div>
 
           <Carousel3D />
-        </div>
-      </section>
-
-      {/* Behind the Scenes Section */}
-      <section className="relative z-10 py-32 w-full overflow-hidden bg-slate-900 text-white">
-        <div className="relative z-10 px-6 lg:px-10 max-w-7xl mx-auto">
-          <div className="flex flex-col md:flex-row items-end justify-between mb-16 gap-8">
-            <div className="max-w-2xl">
-              <h3 className="text-xs font-bold uppercase tracking-[0.4em] text-amber-500 mb-4">Proceso Creativo</h3>
-              <Link href="/el-centro" className="group">
-                <h2 className="text-4xl md:text-6xl font-serif font-bold leading-tight transition-all duration-500 group-hover:text-amber-500 group-hover:drop-shadow-[0_0_15px_rgba(245,158,11,0.5)]">
-                  Detrás de <span className="italic font-light text-slate-400 group-hover:text-slate-300">Escena</span>
-                </h2>
-              </Link>
-            </div>
-            <p className="text-slate-400 font-light max-w-sm text-sm leading-relaxed">
-              Explora la intimidad de nuestros ensayos, la fabricación de instrumentos y la vida cotidiana en el centro cultural.
-            </p>
-          </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-4 gap-4 h-[600px]">
-            <Link href="/el-centro" className="md:col-span-2 relative group overflow-hidden rounded-2xl border-2 border-amber-500/20 hover:border-amber-500/60 transition-colors duration-500">
-              <Image 
-                src="https://picsum.photos/seed/bts1/800/1000" 
-                alt="Ensayo" 
-                fill 
-                className="object-cover transition-transform duration-700 group-hover:scale-110"
-              />
-              <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent opacity-60 group-hover:opacity-80 transition-opacity" />
-              <div className="absolute bottom-6 left-6">
-                <span className="text-[10px] font-bold uppercase tracking-widest text-amber-500 mb-2 block">Ensayos</span>
-                <h4 className="text-xl font-bold">La danza nace en el silencio</h4>
-              </div>
-            </Link>
-            <Link href="/creacion" className="relative group overflow-hidden rounded-2xl border-2 border-amber-500/20 hover:border-amber-500/60 transition-colors duration-500">
-              <Image 
-                src="https://picsum.photos/seed/bts2/400/600" 
-                alt="Instrumentos" 
-                fill 
-                className="object-cover transition-transform duration-700 group-hover:scale-110"
-              />
-              <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent opacity-60" />
-              <div className="absolute bottom-6 left-6">
-                <span className="text-[10px] font-bold uppercase tracking-widest text-amber-500 mb-2 block">Artesanía</span>
-                <h4 className="text-lg font-bold">Maderas que cantan</h4>
-              </div>
-            </Link>
-            <div className="flex flex-col gap-4">
-              <Link href="/educatividad" className="relative flex-grow group overflow-hidden rounded-2xl border-2 border-amber-500/20 hover:border-amber-500/60 transition-colors duration-500">
-                <Image 
-                  src="https://picsum.photos/seed/bts3/400/400" 
-                  alt="Comunidad" 
-                  fill 
-                  className="object-cover transition-transform duration-700 group-hover:scale-110"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent opacity-60" />
-              </Link>
-              <Link href="/agenda" className="relative flex-grow group overflow-hidden rounded-2xl border-2 border-amber-500/20 hover:border-amber-500/60 transition-colors duration-500">
-                <Image 
-                  src="https://picsum.photos/seed/bts4/400/400" 
-                  alt="Maestros" 
-                  fill 
-                  className="object-cover transition-transform duration-700 group-hover:scale-110"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent opacity-60" />
-              </Link>
-            </div>
-          </div>
         </div>
       </section>
 

@@ -22,17 +22,29 @@ export default function SectionNavigator() {
   const [activeSection, setActiveSection] = useState('Inicio');
   const [isHovered, setIsHovered] = useState(false);
   const [isForcedClosed, setIsForcedClosed] = useState(false);
-  const [hasInteracted, setHasInteracted] = useState(() => {
-    if (typeof window !== 'undefined') {
-      return !!localStorage.getItem('navigator_visited');
+  const [hasInteracted, setHasInteracted] = useState(false);
+
+  useEffect(() => {
+    try {
+      const visited = localStorage.getItem('navigator_visited');
+      if (visited) {
+        requestAnimationFrame(() => {
+          setHasInteracted(true);
+        });
+      }
+    } catch {
+      // ignore local storage errors
     }
-    return false;
-  });
+  }, []);
 
   const handleInteraction = () => {
     if (!hasInteracted) {
       setHasInteracted(true);
-      localStorage.setItem('navigator_visited', 'true');
+      try {
+        localStorage.setItem('navigator_visited', 'true');
+      } catch {
+        // ignore
+      }
     }
   };
 
@@ -86,21 +98,28 @@ export default function SectionNavigator() {
       onClick={handleInteraction}
     >
       <motion.div 
-        className={`pointer-events-auto bg-white/80 dark:bg-slate-900/80 backdrop-blur-md border border-amber-500/30 rounded-2xl shadow-xl overflow-hidden transition-opacity duration-500 ${!hasInteracted ? 'shadow-[0_0_20px_rgba(245,158,11,0.4)]' : ''}`}
+        layout
+        className={`pointer-events-auto bg-white/95 dark:bg-slate-900/95 backdrop-blur-md border border-amber-500/40 rounded-2xl shadow-xl overflow-hidden ${
+          !isOpen ? 'animate-pulse-subtle hover:animate-none' : ''
+        }`}
         initial={false}
         animate={{ 
           width: isOpen ? 240 : 'auto',
-          height: isOpen ? 'auto' : 48,
-          opacity: isOpen || !hasInteracted ? 1 : 0.15
+          opacity: isOpen ? 1 : 0.85
         }}
-        transition={{ type: 'spring', stiffness: 300, damping: 30 }}
+        transition={{
+          type: 'spring',
+          stiffness: 420,
+          damping: 30,
+          mass: 0.8
+        }}
       >
         {/* Current Section Display */}
         <div 
-          className="flex items-center h-12 px-4 gap-3 cursor-pointer"
+          className="flex items-center h-12 px-4 gap-3 cursor-pointer select-none"
           onClick={() => setIsForcedClosed(true)}
         >
-          <div className="w-8 h-8 rounded-full bg-amber-500/10 flex items-center justify-center text-amber-600 dark:text-amber-400">
+          <div className="w-8 h-8 rounded-full bg-amber-500/10 flex items-center justify-center text-amber-600 dark:text-amber-400 shrink-0">
             {sections.find(s => s.name === displaySection)?.icon || <Home className="w-4 h-4" />}
           </div>
           <span className="font-bold text-slate-900 dark:text-white whitespace-nowrap uppercase tracking-wider text-sm">
@@ -108,7 +127,8 @@ export default function SectionNavigator() {
           </span>
           <motion.div
             animate={{ rotate: isOpen ? 90 : 0 }}
-            className="ml-auto text-slate-400"
+            transition={{ duration: 0.2, ease: "easeOut" }}
+            className="ml-auto text-slate-400 shrink-0"
           >
             <ChevronRight className="w-4 h-4" />
           </motion.div>
@@ -118,23 +138,24 @@ export default function SectionNavigator() {
         <AnimatePresence>
           {isOpen && (
             <motion.div 
-              initial={{ opacity: 0, y: -10 }}
-              animate={{ opacity: 1, y: 0 }}
-              exit={{ opacity: 0, y: -10 }}
-              className="px-2 pb-4 space-y-1"
+              initial={{ opacity: 0, height: 0 }}
+              animate={{ opacity: 1, height: 'auto' }}
+              exit={{ opacity: 0, height: 0 }}
+              transition={{ duration: 0.22, ease: [0.16, 1, 0.3, 1] }}
+              className="px-2 pb-3 space-y-1 overflow-hidden"
             >
               <div className="h-px bg-slate-200 dark:bg-slate-800 mx-2 mb-2" />
               {sections.map((section) => (
                 <Link 
                   key={section.id} 
                   href={section.href}
-                  className={`flex items-center gap-3 px-3 py-2 rounded-xl transition-colors ${
+                  className={`flex items-center gap-3 px-3 py-2 rounded-xl transition-all duration-150 ${
                     displaySection === section.name 
-                      ? 'bg-amber-500 text-white shadow-lg shadow-amber-500/20' 
+                      ? 'bg-amber-500 text-white shadow-md shadow-amber-500/20 font-medium' 
                       : 'text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800 hover:text-amber-600 dark:hover:text-amber-400'
                   }`}
                 >
-                  <div className={displaySection === section.name ? 'text-white' : 'text-amber-500/60'}>
+                  <div className={`shrink-0 ${displaySection === section.name ? 'text-white' : 'text-amber-500/70'}`}>
                     {section.icon}
                   </div>
                   <span className="text-sm font-medium whitespace-nowrap">

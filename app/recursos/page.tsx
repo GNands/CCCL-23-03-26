@@ -13,7 +13,7 @@ const recursos = [
     title: 'Galería fotográfica',
     subtitle: 'Imágenes que capturan la esencia de nuestras tradiciones.',
     sumilla: 'Explora nuestra extensa colección de fotografías que documentan festividades, rituales, presentaciones artísticas y la vida cotidiana en las comunidades andinas. Un viaje visual a través de nuestra historia y diversidad cultural.',
-    image: 'https://picsum.photos/seed/galeria1/800/600',
+    image: 'https://images.unsplash.com/photo-1514525253161-7a46d19cd819?w=800&auto=format&fit=crop&q=80',
     link: '/recursos/galeria?tag=fotos'
   },
   {
@@ -21,7 +21,7 @@ const recursos = [
     title: 'Archivo audiovisual',
     subtitle: 'Sonidos y movimientos de los Andes.',
     sumilla: 'Accede a nuestro archivo de videos y grabaciones sonoras, que incluye registros de espectáculos, documentales, entrevistas a maestros tradicionales y material inédito sobre la Danza de las Tijeras y la música Chanka.',
-    image: 'https://picsum.photos/seed/audiovisual1/800/600',
+    image: 'https://images.unsplash.com/photo-1508700115892-45ecd05ae2ad?w=800&auto=format&fit=crop&q=80',
     link: '/recursos/galeria?tag=videos'
   },
   {
@@ -29,7 +29,7 @@ const recursos = [
     title: 'Publicaciones e investigaciones',
     subtitle: 'Conocimiento para preservar nuestro legado.',
     sumilla: 'Descubre artículos, ensayos, libros y material didáctico producido por el Centro Cultural y sus colaboradores. Recursos invaluables para estudiantes, investigadores y amantes de la cultura andina.',
-    image: 'https://picsum.photos/seed/publicaciones1/800/600',
+    image: 'https://images.unsplash.com/photo-1533174072545-7a4b6ad7a6c3?w=800&auto=format&fit=crop&q=80',
     link: '/recursos/articulos'
   },
   {
@@ -37,7 +37,7 @@ const recursos = [
     title: 'Directorio de artistas',
     subtitle: 'Conexión con el talento y la maestría.',
     sumilla: 'Un espacio dedicado a visibilizar y conectar con los artistas, músicos y danzantes que forman parte de nuestra red. Encuentra perfiles detallados, trayectorias y formas de contacto para colaboraciones y proyectos culturales.',
-    image: 'https://picsum.photos/seed/artistas1/800/600',
+    image: 'https://images.unsplash.com/photo-1511671782779-c97d3d27a1d4?w=800&auto=format&fit=crop&q=80',
     link: '/recursos/directorio'
   }
 ];
@@ -71,13 +71,13 @@ export default function RecursosPage() {
           <h2 className="text-xl md:text-2xl font-light text-slate-800 dark:text-slate-200 transition-colors duration-500 italic">
             <DynamicText 
               words={[
-                "explora nuestro archivo documental y audiovisual", 
-                "Ponte al día con las ultimas publicaciones", 
-                "Conoce los origenes de todas las historias", 
-                "Dejate impresionarte por nuestra Colección Privada de Fotografías", 
-                "Descubre material inedito de todos los rincones del Perú"
+                "Explora nuestro archivo documental y audiovisual", 
+                "Ponte al día con las últimas publicaciones", 
+                "Conoce los orígenes de todas las historias", 
+                "Déjate impresionar por nuestra colección privada de fotografías", 
+                "Descubre material inédito de todos los rincones del Perú"
               ]} 
-              highlightClass="text-slate-900 dark:text-white" 
+              highlightClass="text-purple-600 dark:text-purple-400" 
             />
           </h2>
         </div>

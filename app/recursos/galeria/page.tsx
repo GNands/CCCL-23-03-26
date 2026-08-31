@@ -10,15 +10,15 @@ import { ArrowLeft, ChevronLeft, ChevronRight, Play, Image as ImageIcon, X } fro
 import Sidebar from '@/components/sidebar';
 
 const galleryItems = [
-  { id: 1, title: "Inicios en Ayacucho", type: "image", src: "https://picsum.photos/seed/1990_1/800/600", year: "1990" },
-  { id: 2, title: "Inicios en Ayacucho", type: "image", src: "https://picsum.photos/seed/1990_2/800/600", year: "1990" },
-  { id: 3, title: "Primer Festival Nacional", type: "video", src: "https://picsum.photos/seed/1995_1/800/600", year: "1995" },
-  { id: 4, title: "Gira por Europa", type: "image", src: "https://picsum.photos/seed/2002_1/800/600", year: "2002" },
-  { id: 5, title: "Gira por Europa", type: "image", src: "https://picsum.photos/seed/2002_2/800/600", year: "2002" },
-  { id: 6, title: "Reconocimiento UNESCO", type: "image", src: "https://picsum.photos/seed/2010_1/800/600", year: "2010" },
-  { id: 7, title: "Fundación del Centro", type: "video", src: "https://picsum.photos/seed/2018_1/800/600", year: "2018" },
-  { id: 8, title: "Juegos Bolivarianos", type: "image", src: "https://picsum.photos/seed/2024_1/800/600", year: "2024" },
-  { id: 9, title: "Juegos Bolivarianos", type: "image", src: "https://picsum.photos/seed/2024_2/800/600", year: "2024" },
+  { id: 1, title: "Inicios en Ayacucho", type: "image", src: "https://images.unsplash.com/photo-1514525253161-7a46d19cd819?w=800&auto=format&fit=crop&q=80", year: "1990" },
+  { id: 2, title: "Inicios en Ayacucho", type: "image", src: "https://images.unsplash.com/photo-1508700115892-45ecd05ae2ad?w=800&auto=format&fit=crop&q=80", year: "1990" },
+  { id: 3, title: "Primer Festival Nacional", type: "video", src: "https://images.unsplash.com/photo-1465847899084-d164df4dedc6?w=800&auto=format&fit=crop&q=80", year: "1995" },
+  { id: 4, title: "Gira por Europa", type: "image", src: "https://images.unsplash.com/photo-1516450360452-9312f5e86fc7?w=800&auto=format&fit=crop&q=80", year: "2002" },
+  { id: 5, title: "Gira por Europa", type: "image", src: "https://images.unsplash.com/photo-1533174072545-7a4b6ad7a6c3?w=800&auto=format&fit=crop&q=80", year: "2002" },
+  { id: 6, title: "Reconocimiento UNESCO", type: "image", src: "https://images.unsplash.com/photo-1579783900882-c0d3dad7b119?w=800&auto=format&fit=crop&q=80", year: "2010" },
+  { id: 7, title: "Fundación del Centro", type: "video", src: "https://images.unsplash.com/photo-1612225330812-01a9c6b355ec?w=800&auto=format&fit=crop&q=80", year: "2018" },
+  { id: 8, title: "Juegos Bolivarianos", type: "image", src: "https://images.unsplash.com/photo-1511671782779-c97d3d27a1d4?w=800&auto=format&fit=crop&q=80", year: "2024" },
+  { id: 9, title: "Juegos Bolivarianos", type: "image", src: "https://images.unsplash.com/photo-1544717305-2782549b5136?w=800&auto=format&fit=crop&q=80", year: "2024" },
 ];
 
 function GaleriaContent() {

@@ -90,15 +90,21 @@ export function AppProvider({ children }: { children: React.ReactNode }) {
   const audioRef = useRef<HTMLAudioElement | null>(null);
 
   useEffect(() => {
-    const storedTheme = localStorage.getItem('theme') as Theme;
-    if (storedTheme) {
-      // eslint-disable-next-line
-      setTheme(storedTheme);
-      if (storedTheme === 'dark') document.documentElement.classList.add('dark');
-    } else if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
-      // eslint-disable-next-line
-      setTheme('dark');
-      document.documentElement.classList.add('dark');
+    try {
+      const storedTheme = localStorage.getItem('theme') as Theme;
+      if (storedTheme) {
+        requestAnimationFrame(() => {
+          setTheme(storedTheme);
+        });
+        if (storedTheme === 'dark') document.documentElement.classList.add('dark');
+      } else if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+        requestAnimationFrame(() => {
+          setTheme('dark');
+        });
+        document.documentElement.classList.add('dark');
+      }
+    } catch {
+      // ignore
     }
   }, []);
 

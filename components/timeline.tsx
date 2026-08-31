@@ -82,27 +82,12 @@ const timelineEvents = [
 
 export default function Timeline() {
   const [selectedEvent, setSelectedEvent] = useState<typeof timelineEvents[0] | null>(null);
-  const [hoveredItems, setHoveredItems] = useState<Set<number>>(new Set());
-  const [hoverDirection, setHoverDirection] = useState<'left' | 'right' | null>(null);
   const scrollRef = useRef<HTMLDivElement>(null);
-
-  useEffect(() => {
-    if (!hoverDirection) return;
-    
-    const interval = setInterval(() => {
-      if (scrollRef.current) {
-        const scrollAmount = hoverDirection === 'left' ? -10 : 10;
-        scrollRef.current.scrollBy({ left: scrollAmount });
-      }
-    }, 20);
-    
-    return () => clearInterval(interval);
-  }, [hoverDirection]);
 
   const scroll = (direction: 'left' | 'right') => {
     if (scrollRef.current) {
       const { current } = scrollRef;
-      const scrollAmount = direction === 'left' ? -400 : 400;
+      const scrollAmount = direction === 'left' ? -360 : 360;
       current.scrollBy({ left: scrollAmount, behavior: 'smooth' });
     }
   };
@@ -115,98 +100,87 @@ export default function Timeline() {
   };
 
   return (
-    <div className="w-full py-24">
-      <div className="max-w-7xl mx-auto px-6 mb-12 text-center">
-        <span className="text-[10px] uppercase tracking-[0.3em] text-amber-600 dark:text-amber-500 font-bold mb-4 block">Evolución</span>
-        <h2 className="text-4xl md:text-5xl font-serif font-bold text-slate-900 dark:text-white mb-6">Nuestra Línea de Tiempo</h2>
-        <p className="text-lg text-slate-600 dark:text-slate-400 max-w-2xl mx-auto">
+    <div className="w-full py-20 overflow-hidden">
+      <div className="max-w-7xl mx-auto px-6 mb-10 text-center">
+        <span className="text-[10px] uppercase tracking-[0.3em] text-amber-600 dark:text-amber-500 font-bold mb-3 block">Evolución</span>
+        <h2 className="text-4xl md:text-5xl font-serif font-bold text-slate-900 dark:text-white mb-4">Nuestra Línea de Tiempo</h2>
+        <p className="text-base md:text-lg text-slate-600 dark:text-slate-400 max-w-2xl mx-auto font-light">
           Un recorrido por los hitos más importantes que han marcado nuestra historia y el legado de la cultura Chanka.
         </p>
       </div>
 
-      <div className="relative mb-24">
-        {/* Hover Zones */}
-        <div 
-          className="absolute left-0 top-0 w-32 h-full z-30 cursor-w-resize"
-          onMouseEnter={() => setHoverDirection('left')}
-          onMouseLeave={() => setHoverDirection(null)}
-        />
-        <div 
-          className="absolute right-0 top-0 w-32 h-full z-30 cursor-e-resize"
-          onMouseEnter={() => setHoverDirection('right')}
-          onMouseLeave={() => setHoverDirection(null)}
-        />
-
+      <div className="relative mb-16">
         {/* Navigation Buttons */}
         <button 
           onClick={() => scroll('left')}
-          className="absolute left-4 top-1/2 -translate-y-1/2 z-20 w-12 h-12 bg-white dark:bg-slate-800 border border-amber-500/30 rounded-full flex items-center justify-center shadow-lg hover:bg-amber-50 dark:hover:bg-slate-700 hover:scale-110 transition-all text-amber-600 dark:text-amber-500"
+          aria-label="Anterior"
+          className="absolute left-6 top-1/2 -translate-y-1/2 z-30 w-12 h-12 bg-white/90 dark:bg-slate-800/90 border border-amber-500/40 rounded-full flex items-center justify-center shadow-xl hover:bg-amber-500 hover:text-white dark:hover:bg-amber-500 hover:scale-105 transition-all text-amber-600 dark:text-amber-400 backdrop-blur-sm"
         >
           <ChevronLeft className="w-6 h-6" />
         </button>
         
         <button 
           onClick={() => scroll('right')}
-          className="absolute right-4 top-1/2 -translate-y-1/2 z-20 w-12 h-12 bg-white dark:bg-slate-800 border border-amber-500/30 rounded-full flex items-center justify-center shadow-lg hover:bg-amber-50 dark:hover:bg-slate-700 hover:scale-110 transition-all text-amber-600 dark:text-amber-500"
+          aria-label="Siguiente"
+          className="absolute right-6 top-1/2 -translate-y-1/2 z-30 w-12 h-12 bg-white/90 dark:bg-slate-800/90 border border-amber-500/40 rounded-full flex items-center justify-center shadow-xl hover:bg-amber-500 hover:text-white dark:hover:bg-amber-500 hover:scale-105 transition-all text-amber-600 dark:text-amber-400 backdrop-blur-sm"
         >
           <ChevronRight className="w-6 h-6" />
         </button>
 
-        {/* Horizontal Scroll Container */}
+        {/* Horizontal Scroll Container without vertical clipping */}
         <div 
           ref={scrollRef}
-          className="flex gap-8 overflow-x-auto py-12 px-8 snap-x snap-mandatory hide-scrollbar relative items-center min-h-[600px]"
+          className="flex gap-10 overflow-x-auto py-32 px-16 hide-scrollbar relative items-center min-h-[700px] scroll-smooth"
           style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}
         >
-          {/* Timeline Line */}
-          <div className="absolute top-1/2 left-0 w-[200%] h-1 bg-amber-500/20 -translate-y-1/2 z-0" />
+          {/* Central Timeline Axis */}
+          <div className="absolute top-1/2 left-0 w-[250%] h-1.5 bg-gradient-to-r from-amber-500/10 via-amber-500/40 to-amber-500/10 -translate-y-1/2 z-0" />
 
           {timelineEvents.map((event, idx) => {
-            const hasBeenHovered = hoveredItems.has(event.id);
+            const isTop = idx % 2 === 0;
             return (
-            <motion.div 
-              key={event.id}
-              initial={{ opacity: 0, scale: 0.9 }}
-              whileInView={{ opacity: 1, scale: 1 }}
-              viewport={{ once: true }}
-              transition={{ delay: idx * 0.1 }}
-              className="relative shrink-0 w-[300px] md:w-[350px] h-2 snap-center group cursor-pointer"
-              onClick={() => handleEventClick(event)}
-              onMouseEnter={() => setHoveredItems(prev => new Set(prev).add(event.id))}
-            >
-              <div className={`absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-4 h-4 rounded-full bg-amber-500 z-10 shadow-[0_0_15px_rgba(245,158,11,0.5)] transition-transform group-hover:scale-150`} />
-              
-              <div className={`absolute left-1/2 -translate-x-1/2 w-full transition-transform duration-500 group-hover:-translate-y-2 ${idx % 2 === 0 ? 'bottom-full mb-8' : 'top-full mt-8'}`}>
-                <div className={`bg-white dark:bg-slate-900 border-2 ${selectedEvent?.id === event.id ? 'border-amber-500' : 'border-amber-500/20'} rounded-2xl p-4 shadow-xl transition-all group-hover:shadow-2xl group-hover:border-amber-500/50`}>
-                  <div className="relative w-full aspect-video rounded-xl overflow-hidden mb-4">
-                    <Image 
-                      src={event.thumbnail} 
-                      alt={event.title} 
-                      fill 
-                      className={`object-cover transition-all duration-700 ${hasBeenHovered ? 'opacity-100' : 'opacity-0 group-hover:opacity-100'} group-hover:scale-110`} 
-                      referrerPolicy="no-referrer"
-                    />
-                    <div className="absolute inset-0 transition-colors flex items-center justify-center bg-black/20 opacity-0 group-hover:opacity-100 group-hover:bg-black/40">
-                      {event.type === 'video' ? (
-                        <div className="w-10 h-10 rounded-full bg-amber-500/80 flex items-center justify-center backdrop-blur-sm">
-                          <Play className="w-4 h-4 text-white ml-1" />
-                        </div>
-                      ) : (
-                        <div className="w-10 h-10 rounded-full bg-amber-500/80 flex items-center justify-center backdrop-blur-sm transition-opacity opacity-0 group-hover:opacity-100">
-                          <ImageIcon className="w-4 h-4 text-white" />
-                        </div>
-                      )}
+              <div 
+                key={event.id}
+                className="relative shrink-0 w-[300px] md:w-[340px] h-2 group cursor-pointer select-none"
+                onClick={() => handleEventClick(event)}
+              >
+                {/* Milestone Node on Line */}
+                <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-5 h-5 rounded-full bg-white dark:bg-slate-900 border-4 border-amber-500 z-20 shadow-[0_0_15px_rgba(245,158,11,0.6)] group-hover:scale-125 transition-transform" />
+                
+                {/* Card Container Positioned Above or Below */}
+                <div className={`absolute left-1/2 -translate-x-1/2 w-full transition-transform duration-300 ${isTop ? 'bottom-full mb-6' : 'top-full mt-6'}`}>
+                  <div className={`bg-white dark:bg-slate-900 border-2 ${selectedEvent?.id === event.id ? 'border-amber-500 shadow-[0_0_25px_rgba(245,158,11,0.25)]' : 'border-amber-500/20'} rounded-3xl p-5 shadow-lg transition-all group-hover:shadow-2xl group-hover:border-amber-500/60`}>
+                    <div className="relative w-full aspect-video rounded-2xl overflow-hidden mb-3.5 bg-slate-100 dark:bg-slate-800">
+                      <Image 
+                        src={event.thumbnail} 
+                        alt={event.title} 
+                        fill 
+                        className="object-cover transition-transform duration-700 group-hover:scale-105" 
+                        referrerPolicy="no-referrer"
+                      />
+                      <div className="absolute inset-0 transition-colors flex items-center justify-center bg-black/20 group-hover:bg-black/40">
+                        {event.type === 'video' ? (
+                          <div className="w-10 h-10 rounded-full bg-amber-500 text-white flex items-center justify-center shadow-lg">
+                            <Play className="w-4 h-4 ml-0.5" />
+                          </div>
+                        ) : (
+                          <div className="w-10 h-10 rounded-full bg-amber-500/90 text-white flex items-center justify-center shadow-lg opacity-0 group-hover:opacity-100 transition-opacity">
+                            <ImageIcon className="w-4 h-4" />
+                          </div>
+                        )}
+                      </div>
+                    </div>
+                    <div className="text-center">
+                      <span className="text-amber-600 dark:text-amber-400 font-serif font-bold text-xl block mb-0.5">{event.year}</span>
+                      <h3 className="text-slate-900 dark:text-white font-medium text-sm leading-snug">{event.title}</h3>
                     </div>
                   </div>
-                  <div className="text-center">
-                    <span className="text-amber-600 dark:text-amber-500 font-bold text-lg block mb-1">{event.year}</span>
-                    <h3 className="text-slate-900 dark:text-white font-medium text-base">{event.title}</h3>
-                  </div>
+                  {/* Stem Line Connecting to Axis */}
+                  <div className={`absolute left-1/2 -translate-x-1/2 w-0.5 h-6 bg-amber-500/40 ${isTop ? 'top-full' : 'bottom-full'}`} />
                 </div>
-                <div className={`absolute left-1/2 -translate-x-1/2 w-0.5 h-8 bg-amber-500/50 ${idx % 2 === 0 ? 'top-full' : 'bottom-full'}`} />
               </div>
-            </motion.div>
-          )})}
+            );
+          })}
         </div>
       </div>
 

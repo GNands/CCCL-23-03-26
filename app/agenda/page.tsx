@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useMemo, useEffect } from 'react';
+import { useState, useMemo, useEffect, useRef } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
 import { 
   ChevronLeft, 
@@ -45,10 +45,10 @@ type CalendarVersion = 'interactive' | 'grid' | 'list';
 
 // Mock events for the calendar
 const mockEvents: Record<string, { id: string, title: string, time: string, location: string, type: 'taller' | 'espectaculo' | 'exposicion', description: string, image?: string }[]> = {
-  '2026-03-15': [{ id: 'e1', title: 'Taller de Retablo', time: '10:00', location: 'Aula 3', type: 'taller', description: 'Aprende las técnicas tradicionales del retablo ayacuchano con maestros artesanos.', image: 'https://picsum.photos/seed/art1/400/300' }],
-  '2026-03-20': [{ id: 'e2', title: 'Voces de la Tierra', time: '19:30', location: 'Teatro Principal', type: 'espectaculo', description: 'Un concierto que reúne las voces más representativas del canto andino contemporáneo.', image: 'https://picsum.photos/seed/music1/400/300' }],
+  '2026-03-15': [{ id: 'e1', title: 'Taller de Retablo', time: '10:00', location: 'Aula 3', type: 'taller', description: 'Aprende las técnicas tradicionales del retablo ayacuchano con maestros artesanos.', image: 'https://images.unsplash.com/photo-1579783900882-c0d3dad7b119?w=600&auto=format&fit=crop&q=80' }],
+  '2026-03-20': [{ id: 'e2', title: 'Voces de la Tierra', time: '19:30', location: 'Teatro Principal', type: 'espectaculo', description: 'Un concierto que reúne las voces más representativas del canto andino contemporáneo.', image: 'https://images.unsplash.com/photo-1511671782779-c97d3d27a1d4?w=600&auto=format&fit=crop&q=80' }],
   '2026-03-23': [
-    { id: 'e0', title: 'Ensayo Abierto: Danza de Tijeras', time: '16:00', location: 'Patio de Honor', type: 'espectaculo', description: 'Observa el proceso de preparación de nuestros danzantes en un ambiente íntimo.', image: 'https://picsum.photos/seed/dance1/400/300' },
+    { id: 'e0', title: 'Ensayo Abierto: Danza de Tijeras', time: '16:00', location: 'Patio de Honor', type: 'espectaculo', description: 'Observa el proceso de preparación de nuestros danzantes en un ambiente íntimo.', image: 'https://images.unsplash.com/photo-1508700115892-45ecd05ae2ad?w=600&auto=format&fit=crop&q=80' },
     { id: 'e6', title: 'Desafío Lector Bibliogam 2026', time: '10:00', location: 'Biblioteca', type: 'taller', description: 'Actividad de fomento a la lectura para todas las edades.' }
   ],
   '2026-03-24': [
@@ -56,10 +56,10 @@ const mockEvents: Record<string, { id: string, title: string, time: string, loca
     { id: 'e8', title: 'Ventanal Alameda', time: '19:00', location: 'Sala de Cine', type: 'espectaculo', description: 'Proyección y conversatorio sobre urbanismo.' }
   ],
   '2026-03-25': [
-    { id: 'e3', title: 'Danza de Tijeras', time: '18:00', location: 'Plaza de las Artes', type: 'espectaculo', description: 'Espectáculo ritual de danza de tijeras con músicos tradicionales.', image: 'https://picsum.photos/seed/dance2/400/300' },
-    { id: 'e4', title: 'Expo Fotográfica: Rostros del Ande', time: 'Todo el día', location: 'Galería Central', type: 'exposicion', description: 'Muestra fotográfica que captura la esencia de las comunidades altoandinas.', image: 'https://picsum.photos/seed/photo1/400/300' }
+    { id: 'e3', title: 'Danza de Tijeras', time: '18:00', location: 'Plaza de las Artes', type: 'espectaculo', description: 'Espectáculo ritual de danza de tijeras con músicos tradicionales.', image: 'https://images.unsplash.com/photo-1533174072545-7a4b6ad7a6c3?w=600&auto=format&fit=crop&q=80' },
+    { id: 'e4', title: 'Expo Fotográfica: Rostros del Ande', time: 'Todo el día', location: 'Galería Central', type: 'exposicion', description: 'Muestra fotográfica que captura la esencia de las comunidades altoandinas.', image: 'https://images.unsplash.com/photo-1544717305-2782549b5136?w=600&auto=format&fit=crop&q=80' }
   ],
-  '2026-04-05': [{ id: 'e5', title: 'Una vida y un violín', time: '20:00', location: 'Teatro Principal', type: 'espectaculo', description: 'Recital de violín andino celebrando la trayectoria del maestro Chimango Lares.', image: 'https://picsum.photos/seed/violin1/400/300' }],
+  '2026-04-05': [{ id: 'e5', title: 'Una vida y un violín', time: '20:00', location: 'Teatro Principal', type: 'espectaculo', description: 'Recital de violín andino celebrando la trayectoria del maestro Chimango Lares.', image: 'https://images.unsplash.com/photo-1612225330812-01a9c6b355ec?w=600&auto=format&fit=crop&q=80' }],
 };
 
 const proximosEventos = [
@@ -69,7 +69,7 @@ const proximosEventos = [
     date: '15 de Mayo, 2026',
     time: '19:00 hrs',
     location: 'Gran Teatro Nacional',
-    image: 'https://picsum.photos/seed/yaku1/800/600',
+    image: 'https://images.unsplash.com/photo-1465847899084-d164df4dedc6?w=1000&auto=format&fit=crop&q=80',
     type: 'espectaculo'
   },
   {
@@ -78,7 +78,7 @@ const proximosEventos = [
     date: 'Inicios: 1er de cada mes',
     time: 'Varios horarios',
     location: 'Centro Cultural Chimango Lares',
-    image: 'https://picsum.photos/seed/talleres1/800/600',
+    image: 'https://images.unsplash.com/photo-1514525253161-7a46d19cd819?w=1000&auto=format&fit=crop&q=80',
     type: 'taller'
   }
 ];
@@ -93,6 +93,67 @@ export default function AgendaPage() {
   const [searchQuery, setSearchQuery] = useState('');
   const [hoveredEvent, setHoveredEvent] = useState<any>(null);
   const [hoverPos, setHoverPos] = useState({ x: 0, y: 0 });
+  const closeTimerRef = useRef<NodeJS.Timeout | null>(null);
+
+  const handleEventMouseEnter = (ev: any, e: React.MouseEvent<HTMLElement>) => {
+    if (closeTimerRef.current) {
+      clearTimeout(closeTimerRef.current);
+      closeTimerRef.current = null;
+    }
+    const rect = e.currentTarget.getBoundingClientRect();
+    
+    // Popup size expectations
+    const popupWidth = 300;
+    const popupHeight = 320;
+    
+    let left = rect.right + 12;
+    // If not enough room to the right, place to the left of the item
+    if (left + popupWidth > window.innerWidth - 20) {
+      left = rect.left - popupWidth - 12;
+    }
+    // Fallback if also off-screen to the left
+    if (left < 16) {
+      left = Math.max(16, rect.left);
+    }
+
+    let top = rect.top - 8;
+    // Avoid overflowing the bottom of the screen
+    if (top + popupHeight > window.innerHeight - 20) {
+      top = Math.max(80, window.innerHeight - popupHeight - 24);
+    }
+    if (top < 80) {
+      top = 80;
+    }
+
+    setHoverPos({ x: left, y: top });
+    setHoveredEvent(ev);
+  };
+
+  const handleEventMouseLeave = () => {
+    if (closeTimerRef.current) {
+      clearTimeout(closeTimerRef.current);
+    }
+    // Grace period allows pointer to move into the popup smoothly
+    closeTimerRef.current = setTimeout(() => {
+      setHoveredEvent(null);
+    }, 240);
+  };
+
+  const handlePopupMouseEnter = () => {
+    if (closeTimerRef.current) {
+      clearTimeout(closeTimerRef.current);
+      closeTimerRef.current = null;
+    }
+  };
+
+  const handlePopupMouseLeave = () => {
+    if (closeTimerRef.current) {
+      clearTimeout(closeTimerRef.current);
+    }
+    closeTimerRef.current = setTimeout(() => {
+      setHoveredEvent(null);
+    }, 200);
+  };
 
   // Calculate days for the month grid
   const monthDays = useMemo(() => {
@@ -192,33 +253,33 @@ export default function AgendaPage() {
       
       {/* Selector de Versiones Flotante (Solo en Agenda) */}
       <div className="fixed top-[184px] left-6 z-[90] pointer-events-none group/version">
-        <div className="pointer-events-auto bg-white/80 dark:bg-slate-900/80 backdrop-blur-md border border-amber-500/30 rounded-2xl shadow-xl overflow-hidden transition-all duration-500 opacity-15 group-hover/version:opacity-100 w-auto group-hover/version:w-48">
+        <div className="pointer-events-auto bg-white/95 dark:bg-slate-900/95 backdrop-blur-md border border-amber-500/40 rounded-2xl shadow-xl overflow-hidden transition-all duration-300 ease-out opacity-85 hover:opacity-100 group-hover/version:opacity-100 w-auto group-hover/version:w-48 animate-pulse-subtle hover:animate-none">
           {/* Header del Selector */}
-          <div className="flex items-center h-12 px-4 gap-3 cursor-default">
+          <div className="flex items-center h-12 px-4 gap-3 cursor-pointer">
             <div className="w-8 h-8 rounded-full bg-amber-500/10 flex items-center justify-center text-amber-600 dark:text-amber-400">
               {version === 'list' ? <List className="w-4 h-4" /> : version === 'grid' ? <Grid className="w-4 h-4" /> : <Layout className="w-4 h-4" />}
             </div>
             <span className="font-bold text-slate-900 dark:text-white whitespace-nowrap uppercase tracking-wider text-xs">
               Vista: {version === 'list' ? 'Simple' : version === 'grid' ? 'Grid' : 'Interactivo'}
             </span>
-            <ChevronDown className="ml-auto w-4 h-4 text-slate-400 group-hover/version:rotate-180 transition-transform" />
+            <ChevronDown className="ml-auto w-4 h-4 text-slate-400 group-hover/version:rotate-180 transition-transform duration-200" />
           </div>
 
           {/* Opciones Expandibles */}
-          <div className="max-h-0 group-hover/version:max-h-48 transition-all duration-500 overflow-hidden">
-            <div className="px-2 pb-4 space-y-1">
+          <div className="max-h-0 group-hover/version:max-h-48 transition-all duration-300 ease-out overflow-hidden">
+            <div className="px-2 pb-3 space-y-1">
               <div className="h-px bg-slate-200 dark:bg-slate-800 mx-2 mb-2" />
               {[
-                { id: 'list', name: 'Vista Simple', icon: List },
                 { id: 'grid', name: 'Grid', icon: Grid },
+                { id: 'list', name: 'Vista Simple', icon: List },
                 { id: 'interactive', name: 'Interactivo', icon: Layout }
               ].map((v) => (
                 <button
                   key={v.id}
                   onClick={() => setVersion(v.id as CalendarVersion)}
-                  className={`w-full flex items-center gap-3 px-3 py-2 rounded-xl transition-colors ${
+                  className={`w-full flex items-center gap-3 px-3 py-2 rounded-xl transition-colors duration-150 ${
                     version === v.id 
-                      ? 'bg-amber-500 text-white shadow-lg shadow-amber-500/20' 
+                      ? 'bg-amber-500 text-white shadow-lg shadow-amber-500/20 font-bold' 
                       : 'text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800 hover:text-amber-600 dark:hover:text-amber-400'
                   }`}
                 >
@@ -666,25 +727,35 @@ export default function AgendaPage() {
                               </div>
                               
                               {isExpanded && (
-                                <div className="space-y-3 overflow-y-auto max-h-[140px] pr-1 custom-scrollbar">
+                                <div className="space-y-2 overflow-y-auto max-h-[150px] no-scrollbar">
                                   {events.length > 0 ? (
                                     events.map((ev) => (
-                                      <div 
+                                      <Link
                                         key={ev.id}
-                                        onMouseEnter={(e) => handleEventHover(e, ev)}
-                                        onMouseLeave={() => setHoveredEvent(null)}
-                                        className="group/ev cursor-pointer border-l-2 border-amber-500/30 hover:border-amber-500 pl-2 transition-all"
+                                        href={`/agenda/${ev.id}`}
+                                        onMouseEnter={(e) => handleEventMouseEnter(ev, e)}
+                                        onMouseLeave={handleEventMouseLeave}
+                                        className="group/ev block p-2 rounded-xl bg-white/70 dark:bg-slate-900/70 border border-amber-500/20 hover:border-amber-500 hover:bg-white dark:hover:bg-slate-900 shadow-sm transition-all text-left"
                                       >
-                                        <p className="text-[8px] font-bold text-slate-400 uppercase tracking-tight mb-0.5">
-                                          {ev.time}
-                                        </p>
-                                        <h5 className="text-[10px] font-bold text-slate-800 dark:text-slate-200 leading-tight group-hover/ev:text-amber-600 transition-colors uppercase line-clamp-2">
+                                        <div className="flex items-center justify-between gap-1 mb-1">
+                                          <span className="text-[9px] font-bold text-amber-600 dark:text-amber-400 uppercase tracking-tight">
+                                            {ev.time}
+                                          </span>
+                                          <span className="text-[8px] font-bold uppercase tracking-wider text-slate-400 dark:text-slate-500">
+                                            {ev.type}
+                                          </span>
+                                        </div>
+                                        <h5 className="text-[11px] font-bold text-slate-800 dark:text-slate-200 leading-tight group-hover/ev:text-amber-600 transition-colors uppercase line-clamp-2 mb-1.5">
                                           {ev.title}
                                         </h5>
-                                      </div>
+                                        <div className="flex items-center justify-between text-[9px] font-bold text-amber-600 dark:text-amber-500 group-hover/ev:underline">
+                                          <span>Ver más</span>
+                                          <ArrowRight className="w-3 h-3 group-hover/ev:translate-x-0.5 transition-transform" />
+                                        </div>
+                                      </Link>
                                     ))
                                   ) : (
-                                    <div className="h-full flex items-center justify-center opacity-10">
+                                    <div className="h-full flex items-center justify-center opacity-10 py-6">
                                       <CalendarIcon className="w-8 h-8 text-slate-400" />
                                     </div>
                                   )}
@@ -692,11 +763,15 @@ export default function AgendaPage() {
                               )}
 
                               {!isExpanded && events.length > 0 && (
-                                <div className="absolute bottom-1 flex gap-0.5">
+                                <div 
+                                  className="absolute bottom-1.5 flex gap-1 cursor-pointer p-1"
+                                  onMouseEnter={(e) => handleEventMouseEnter(events[0], e)}
+                                  onMouseLeave={handleEventMouseLeave}
+                                >
                                   {events.slice(0, 3).map((_, idx) => (
-                                    <div key={idx} className="w-1 h-1 rounded-full bg-amber-500" />
+                                    <div key={idx} className="w-1.5 h-1.5 rounded-full bg-amber-500 shadow-sm shadow-amber-500/50" />
                                   ))}
-                                  {events.length > 3 && <div className="w-1 h-1 rounded-full bg-amber-500/40" />}
+                                  {events.length > 3 && <div className="w-1.5 h-1.5 rounded-full bg-amber-500/40" />}
                                 </div>
                               )}
                             </div>
@@ -708,33 +783,69 @@ export default function AgendaPage() {
                 })}
               </div>
 
-              {/* Hover Tooltip/Card */}
+              {/* Hover Tooltip/Card (Fixed, smooth and fully interactive) */}
               <AnimatePresence>
                 {hoveredEvent && (
                   <motion.div
-                    initial={{ opacity: 0, scale: 0.9, y: 10 }}
+                    initial={{ opacity: 0, scale: 0.96, y: 6 }}
                     animate={{ opacity: 1, scale: 1, y: 0 }}
-                    exit={{ opacity: 0, scale: 0.9, y: 10 }}
+                    exit={{ opacity: 0, scale: 0.96, y: 6 }}
+                    transition={{ duration: 0.18, ease: "easeOut" }}
                     style={{ 
                       position: 'fixed', 
-                      left: hoverPos.x + 20, 
-                      top: hoverPos.y - 100,
+                      left: hoverPos.x, 
+                      top: hoverPos.y,
                       zIndex: 100
                     }}
-                    className="w-72 bg-white dark:bg-slate-900 rounded-2xl shadow-2xl border border-amber-500/20 overflow-hidden pointer-events-none"
+                    onMouseEnter={handlePopupMouseEnter}
+                    onMouseLeave={handlePopupMouseLeave}
+                    className="w-72 bg-white/95 dark:bg-slate-900/95 backdrop-blur-md rounded-2xl shadow-2xl border border-amber-500/30 overflow-hidden pointer-events-auto ring-1 ring-black/5 dark:ring-white/10"
                   >
                     {hoveredEvent.image && (
                       <div className="relative h-32 w-full">
-                        <Image src={hoveredEvent.image} alt={hoveredEvent.title} fill className="object-cover" />
+                        <Image 
+                          src={hoveredEvent.image} 
+                          alt={hoveredEvent.title} 
+                          fill 
+                          className="object-cover" 
+                          referrerPolicy="no-referrer" 
+                        />
+                        <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent" />
+                        <span className="absolute bottom-2 left-3 text-[9px] font-bold text-amber-400 uppercase tracking-widest bg-black/60 backdrop-blur-sm px-2.5 py-0.5 rounded-full">
+                          {hoveredEvent.type}
+                        </span>
                       </div>
                     )}
-                    <div className="p-4">
-                      <p className="text-[10px] font-bold text-amber-600 uppercase mb-1">{hoveredEvent.type}</p>
-                      <h6 className="text-sm font-bold text-slate-900 dark:text-white mb-2">{hoveredEvent.title}</h6>
-                      <p className="text-[10px] text-slate-500 dark:text-slate-400 mb-4 line-clamp-2">{hoveredEvent.description}</p>
-                      <div className="flex items-center justify-between">
-                        <span className="text-[10px] font-bold text-slate-400">{hoveredEvent.time}</span>
-                        <div className="px-3 py-1 bg-black text-white text-[10px] font-bold rounded-full">Ver más</div>
+                    <div className="p-4 space-y-2">
+                      {!hoveredEvent.image && (
+                        <p className="text-[10px] font-bold text-amber-600 dark:text-amber-400 uppercase tracking-widest">
+                          {hoveredEvent.type}
+                        </p>
+                      )}
+                      <h6 className="text-sm font-bold text-slate-900 dark:text-white leading-snug">
+                        {hoveredEvent.title}
+                      </h6>
+                      <div className="flex flex-wrap items-center gap-x-3 gap-y-1 text-[10px] text-slate-500 dark:text-slate-400 font-medium">
+                        <span className="flex items-center gap-1">
+                          <Clock className="w-3 h-3 text-amber-500" />
+                          {hoveredEvent.time}
+                        </span>
+                        <span className="flex items-center gap-1">
+                          <MapPin className="w-3 h-3 text-amber-500" />
+                          {hoveredEvent.location}
+                        </span>
+                      </div>
+                      <p className="text-xs text-slate-600 dark:text-slate-300 line-clamp-2 leading-relaxed">
+                        {hoveredEvent.description}
+                      </p>
+                      <div className="pt-2 border-t border-slate-100 dark:border-slate-800">
+                        <Link 
+                          href={`/agenda/${hoveredEvent.id}`}
+                          className="w-full inline-flex items-center justify-center gap-2 py-2 px-3 bg-amber-500 hover:bg-amber-600 text-white text-xs font-bold rounded-xl transition-all shadow-md shadow-amber-500/20 group/btn"
+                        >
+                          <span>Ver más</span>
+                          <ArrowRight className="w-3.5 h-3.5 group-hover/btn:translate-x-0.5 transition-transform" />
+                        </Link>
                       </div>
                     </div>
                   </motion.div>

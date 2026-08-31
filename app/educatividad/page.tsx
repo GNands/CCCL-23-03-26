@@ -59,7 +59,7 @@ export default function EducatividadPage() {
         <div className="relative z-10 px-6 lg:px-10 max-w-4xl mx-auto flex flex-col items-center w-full mt-20">
           <span className="text-[10px] font-bold uppercase tracking-[0.4em] text-emerald-600 dark:text-emerald-500 mb-4">Educación Viva</span>
           <h1 className="text-4xl md:text-5xl lg:text-7xl font-serif font-bold tracking-tight text-slate-900 dark:text-white transition-colors duration-500 mb-4">
-            El arte que <DynamicText words={["transforma", "educa", "Conecta", "Perdura"]} highlightClass="text-emerald-500" />
+            El arte que <DynamicText words={["Transforma", "Educa", "Conecta", "Perdura"]} highlightClass="text-emerald-500" />
           </h1>
           <h2 className="text-xl md:text-2xl font-light text-slate-800 dark:text-slate-200 transition-colors duration-500 italic">
             Descubre nuestros programas de formación y mediación cultural

@@ -13,7 +13,7 @@ const artistas = [
     name: "Chimango Lares",
     role: "Director y Primer Violín Andino",
     bio: "Más de 50 años de trayectoria difundiendo la música andina y la Danza de las Tijeras por el mundo.",
-    image: "https://picsum.photos/seed/chimango/400/400",
+    image: "https://images.unsplash.com/photo-1544717305-2782549b5136?w=400&auto=format&fit=crop&q=80",
     skills: ["Violín", "Composición", "Dirección"],
   },
   {
@@ -21,7 +21,7 @@ const artistas = [
     name: "María Quispe",
     role: "Voz Principal",
     bio: "Intérprete de cantos tradicionales con una voz que transmite la esencia de los Andes.",
-    image: "https://picsum.photos/seed/maria/400/400",
+    image: "https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=400&auto=format&fit=crop&q=80",
     skills: ["Canto", "Percusión menor"],
   },
   {
@@ -29,7 +29,7 @@ const artistas = [
     name: "Carlos Huamán",
     role: "Danzante de Tijeras",
     bio: "Reconocido danzante con múltiples premios nacionales, portador de la tradición ancestral.",
-    image: "https://picsum.photos/seed/carlos/400/400",
+    image: "https://images.unsplash.com/photo-1508700115892-45ecd05ae2ad?w=400&auto=format&fit=crop&q=80",
     skills: ["Danza", "Coreografía"],
   },
   {
@@ -37,7 +37,7 @@ const artistas = [
     name: "Ana Condori",
     role: "Arpista",
     bio: "Virtuosa del arpa andina, acompañando melodías tradicionales con maestría y sentimiento.",
-    image: "https://picsum.photos/seed/ana/400/400",
+    image: "https://images.unsplash.com/photo-1517841905240-472988babdf9?w=400&auto=format&fit=crop&q=80",
     skills: ["Arpa", "Arreglos"],
   },
   {
@@ -45,7 +45,7 @@ const artistas = [
     name: "Luis Mendoza",
     role: "Guitarrista",
     bio: "Especialista en guitarra ayacuchana, fusionando ritmos tradicionales con técnicas contemporáneas.",
-    image: "https://picsum.photos/seed/luis/400/400",
+    image: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=400&auto=format&fit=crop&q=80",
     skills: ["Guitarra", "Coros"],
   },
   {
@@ -53,7 +53,7 @@ const artistas = [
     name: "Elena Vargas",
     role: "Investigadora Cultural",
     bio: "Antropóloga dedicada a la documentación y preservación de las festividades andinas.",
-    image: "https://picsum.photos/seed/elena/400/400",
+    image: "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=400&auto=format&fit=crop&q=80",
     skills: ["Investigación", "Gestión Cultural"],
   }
 ];

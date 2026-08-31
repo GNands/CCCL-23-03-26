@@ -10,21 +10,21 @@ const resources = [
     title: "Galería y Videoteca",
     description: "Registramos y recuperamos en fotografía y video importantes momentos de nuestro calendario religioso, agrícola y festivo.",
     icon: <ImageIcon className="w-6 h-6 text-amber-400" />,
-    image: "https://picsum.photos/seed/galeria/600/400"
+    image: "https://images.unsplash.com/photo-1514525253161-7a46d19cd819?w=600&auto=format&fit=crop&q=80"
   },
   {
     type: 'articles',
     title: "Artículos e investigaciones",
     description: "Curamos un repositario de conocimiento técnico y académico de mucho valor para el investigador y el curioso.",
     icon: <FileText className="w-6 h-6 text-amber-400" />,
-    image: "https://picsum.photos/seed/articulos/600/400"
+    image: "https://images.unsplash.com/photo-1533174072545-7a4b6ad7a6c3?w=600&auto=format&fit=crop&q=80"
   },
   {
     type: 'directory',
     title: "Directorio de artistas y profesionales",
     description: "Te ponemos en contacto con artistas y profesionales de trayectoria y experiencia comprobada.",
     icon: <Users className="w-6 h-6 text-amber-400" />,
-    image: "https://picsum.photos/seed/directorio/600/400"
+    image: "https://images.unsplash.com/photo-1511671782779-c97d3d27a1d4?w=600&auto=format&fit=crop&q=80"
   }
 ];
 

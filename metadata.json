@@ -1,5 +1,6 @@
 {
   "name": "CCCL | Centro Cultural Chimango Lares",
-  "description": "Version Beta",
-  "requestFramePermissions": []
+  "description": "Espacio vivo de creación, memoria andina, espectáculos escénicos y agenda cultural.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
 }

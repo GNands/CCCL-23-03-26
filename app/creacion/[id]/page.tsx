@@ -12,13 +12,13 @@ const proyectosData: Record<string, any> = {
   'hatun-yaku-raymi': {
     title: 'Hatun Yaku Raymi o "La Gran Fiesta del Agua"',
     subtitle: 'Estreno: 20XX, Gran Teatro Nacional del Perú.',
-    image: 'https://picsum.photos/seed/yaku1/1200/600',
+    image: 'https://images.unsplash.com/photo-1465847899084-d164df4dedc6?w=1200&auto=format&fit=crop&q=80',
     videoUrl: 'https://www.youtube.com/watch?v=dQw4w9WgXcQ',
     gallery: [
-      'https://picsum.photos/seed/yaku1/800/600',
-      'https://picsum.photos/seed/yaku2/800/600',
-      'https://picsum.photos/seed/yaku3/800/600',
-      'https://picsum.photos/seed/yaku4/800/600',
+      'https://images.unsplash.com/photo-1465847899084-d164df4dedc6?w=800&auto=format&fit=crop&q=80',
+      'https://images.unsplash.com/photo-1514525253161-7a46d19cd819?w=800&auto=format&fit=crop&q=80',
+      'https://images.unsplash.com/photo-1508700115892-45ecd05ae2ad?w=800&auto=format&fit=crop&q=80',
+      'https://images.unsplash.com/photo-1511671782779-c97d3d27a1d4?w=800&auto=format&fit=crop&q=80',
     ],
     contexto: [
       'En el corazón de los Andes peruanos, donde las montañas besan el cielo, pervive una tradición ancestral: el Hatun Yaku Raymi, un himno al agua que nutre la vida. En el valle de Sondondo y otras regiones andinas, esta celebración, conocida también como "Limpia de las acequias", se despliega como un ritual mágico.',
@@ -49,12 +49,12 @@ const proyectosData: Record<string, any> = {
   'leyenda-nino-danzaq': {
     title: 'La Leyenda del Niño Danzaq',
     subtitle: 'Estreno: 20XX, Gran Teatro Nacional del Perú.',
-    image: 'https://picsum.photos/seed/danzaq1/1200/600',
+    image: 'https://images.unsplash.com/photo-1508700115892-45ecd05ae2ad?w=1200&auto=format&fit=crop&q=80',
     videoUrl: 'https://www.youtube.com/watch?v=dQw4w9WgXcQ',
     gallery: [
-      'https://picsum.photos/seed/danzaq1/800/600',
-      'https://picsum.photos/seed/danzaq2/800/600',
-      'https://picsum.photos/seed/danzaq3/800/600',
+      'https://images.unsplash.com/photo-1508700115892-45ecd05ae2ad?w=800&auto=format&fit=crop&q=80',
+      'https://images.unsplash.com/photo-1533174072545-7a4b6ad7a6c3?w=800&auto=format&fit=crop&q=80',
+      'https://images.unsplash.com/photo-1579783900882-c0d3dad7b119?w=800&auto=format&fit=crop&q=80',
     ],
     contexto: [
       'Esta obra es una adaptación libre del cuento de tradición oral "El niño leñador" que circula en el departamento de Ayacucho (Perú). También existe otra versión de la narración denominada "El tusuq muñeco", recopilado por Alfonsina Barrionuevo en su libro Ayacucho, la comarca del puka amaru. Sin embargo, los ecos de esta historia se pueden hallar en gérmen en otras fabulas y narraciones andinas.',
@@ -84,11 +84,11 @@ const proyectosData: Record<string, any> = {
   'un-canto-para-mama': {
     title: 'Un Canto para Mamá',
     subtitle: 'Un homenaje para las madres luchadoras de todo Perú y para la Madre Tierra.',
-    image: 'https://picsum.photos/seed/mama1/1200/600',
+    image: 'https://images.unsplash.com/photo-1511671782779-c97d3d27a1d4?w=1200&auto=format&fit=crop&q=80',
     videoUrl: 'https://www.youtube.com/watch?v=dQw4w9WgXcQ',
     gallery: [
-      'https://picsum.photos/seed/mama1/800/600',
-      'https://picsum.photos/seed/mama2/800/600',
+      'https://images.unsplash.com/photo-1511671782779-c97d3d27a1d4?w=800&auto=format&fit=crop&q=80',
+      'https://images.unsplash.com/photo-1612225330812-01a9c6b355ec?w=800&auto=format&fit=crop&q=80',
     ],
     contexto: [
       'En casi todas las culturas del mundo, existe un día especial para honrar a las madres, figuras centrales en la vida familiar y social. En el contexto peruano, esta conmemoración adquiere un matiz profundo, ya que no solo se celebra a la madre concreta, aquella que cría y guía a sus hijos, sino también a la madre simbólica: la Pachamamá, nuestra Madre Tierra. Ambas representan los cimientos de la vida, el amor y la continuidad, esenciales para nuestra existencia y bienestar.',
